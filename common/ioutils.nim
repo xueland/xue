@@ -1,6 +1,6 @@
 import macros
 import libc
-import config
+import tweaks
 
 macro print*(format: cstring, args: varargs[untyped]): untyped =
     ## Wrapper around libc `printf` and `fputs`.
@@ -12,10 +12,10 @@ macro print*(format: cstring, args: varargs[untyped]): untyped =
 
     if args.len() == 0:
         return quote do:
-            libc.fputs(`format`, stdout)
+            fputs(`format`, stdout)
     else:
         return quote do:
-            libc.printf(`format`, `args`)
+            printf(`format`, `args`)
 
 macro printLine*(format: cstring, args: varargs[untyped]): untyped =
     ## Wrapper around libc `printf` and `puts`.
@@ -35,7 +35,7 @@ macro printPaddedLine*(format: cstring, args: varargs[untyped]): untyped =
         printPaddedLine("Hello, World!") # -> "\nHello, World!\n\n" ( default behaviour )
         printPaddedLine("Hello, World!") # -> "Hello, World!\n" ( when `NoNewLinePadding` is `true` )
 
-    when config.NoNewLinePadding:
+    when NoNewLinePadding:
         return quote do:
             print(`format` & "\n", `args`)
     else:
