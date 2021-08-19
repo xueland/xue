@@ -1,0 +1,5 @@
+printf	common/libc.html#printf,cstring	libc: printf(format: cstring)	
+fprintf	common/libc.html#fprintf,File,cstring	libc: fprintf(stream: File; format: cstring)	
+puts	common/libc.html#puts,cstring	libc: puts(s: cstring)	
+fputs	common/libc.html#fputs,cstring,File	libc: fputs(s: cstring; stream: File)	
+fflush	common/libc.html#fflush,File	libc: fflush(stream: File)	
