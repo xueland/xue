@@ -103,9 +103,15 @@ function main() {
   <li><a class="reference" href="#XUE_VERSION_PATCH"
     title="XUE_VERSION_PATCH = 0">XUE_VERSION_PATCH</a></li>
   <li><a class="reference" href="#XUE_VERSION_BUILD"
-    title="XUE_VERSION_BUILD = &quot;20210820040521&quot;">XUE_VERSION_BUILD</a></li>
+    title="XUE_VERSION_BUILD = &quot;20210820044159&quot;">XUE_VERSION_BUILD</a></li>
   <li><a class="reference" href="#XUE_VERSION_STRING"
     title="XUE_VERSION_STRING = &quot;1.0.0&quot;">XUE_VERSION_STRING</a></li>
+  <li><a class="reference" href="#EXIT_STATUS_SUCCESS"
+    title="EXIT_STATUS_SUCCESS = 0">EXIT_STATUS_SUCCESS</a></li>
+  <li><a class="reference" href="#EXIT_STATUS_FAILURE"
+    title="EXIT_STATUS_FAILURE = 1">EXIT_STATUS_FAILURE</a></li>
+  <li><a class="reference" href="#EXIT_STATUS_WRONG_USAGE"
+    title="EXIT_STATUS_WRONG_USAGE = 2">EXIT_STATUS_WRONG_USAGE</a></li>
 
   </ul>
 </li>
@@ -131,35 +137,56 @@ whether new-line padding should be inserted when <tt class="docutils literal"><s
 <dt><pre><a href="tweaks.html#XUE_VERSION_MAJOR"><span class="Identifier">XUE_VERSION_MAJOR</span></a> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
 <dd>
 
-
+xue major version number
 
 </dd>
 <a id="XUE_VERSION_MINOR"></a>
 <dt><pre><a href="tweaks.html#XUE_VERSION_MINOR"><span class="Identifier">XUE_VERSION_MINOR</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
 <dd>
 
-
+xue minor version number
 
 </dd>
 <a id="XUE_VERSION_PATCH"></a>
 <dt><pre><a href="tweaks.html#XUE_VERSION_PATCH"><span class="Identifier">XUE_VERSION_PATCH</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
 <dd>
 
-
+xue patch version number
 
 </dd>
 <a id="XUE_VERSION_BUILD"></a>
-<dt><pre><a href="tweaks.html#XUE_VERSION_BUILD"><span class="Identifier">XUE_VERSION_BUILD</span></a> <span class="Other">=</span> <span class="StringLit">&quot;20210820040521&quot;</span></pre></dt>
+<dt><pre><a href="tweaks.html#XUE_VERSION_BUILD"><span class="Identifier">XUE_VERSION_BUILD</span></a> <span class="Other">=</span> <span class="StringLit">&quot;20210820044159&quot;</span></pre></dt>
 <dd>
 
-
+build number is generated basded on <tt class="docutils literal"><span class="pre">CompileDate</span></tt> and <tt class="docutils literal"><span class="pre">CompileTime</span></tt>
 
 </dd>
 <a id="XUE_VERSION_STRING"></a>
 <dt><pre><a href="tweaks.html#XUE_VERSION_STRING"><span class="Identifier">XUE_VERSION_STRING</span></a> <span class="Other">=</span> <span class="StringLit">&quot;1.0.0&quot;</span></pre></dt>
 <dd>
 
+build number is generated basded major, minor, patch version.
 
+</dd>
+<a id="EXIT_STATUS_SUCCESS"></a>
+<dt><pre><a href="tweaks.html#EXIT_STATUS_SUCCESS"><span class="Identifier">EXIT_STATUS_SUCCESS</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+operation is succeeded
+
+</dd>
+<a id="EXIT_STATUS_FAILURE"></a>
+<dt><pre><a href="tweaks.html#EXIT_STATUS_FAILURE"><span class="Identifier">EXIT_STATUS_FAILURE</span></a> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
+<dd>
+
+operation is failed with some error
+
+</dd>
+<a id="EXIT_STATUS_WRONG_USAGE"></a>
+<dt><pre><a href="tweaks.html#EXIT_STATUS_WRONG_USAGE"><span class="Identifier">EXIT_STATUS_WRONG_USAGE</span></a> <span class="Other">=</span> <span class="DecNumber">2</span></pre></dt>
+<dd>
+
+operation is failed due to invalid CLI usage, etc.
 
 </dd>
 
@@ -172,7 +199,7 @@ whether new-line padding should be inserted when <tt class="docutils literal"><s
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-08-20 04:05:21 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-08-20 04:41:59 UTC</small>
       </div>
     </div>
   </div>
