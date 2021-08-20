@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-command -v nimble &> /dev/null && nimble docsgen && git add .
+(command -v nimble &> /dev/null && nimble docsgen && git add .) || exit 0
