@@ -1,0 +1,3 @@
+runCodeString	xue.html#runCodeString,string,string	xue: runCodeString(code: string; sourcePath: string)	
+runFromFile	xue.html#runFromFile,string	xue: runFromFile(path: string)	
+runFromREPL	xue.html#runFromREPL	xue: runFromREPL()	

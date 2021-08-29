@@ -30,12 +30,12 @@ macro printLine*(format: cstring, args: varargs[untyped]): untyped =
 macro printPaddedLine*(format: cstring, args: varargs[untyped]): untyped =
     ## Wrapper around libc `printf` and `puts`.
     ## 
-    ## Invoke `printf(format, args)` or `fputs(format, stdout)` based on args len passed to this macro with new-line at the beginning and end unless `NoNewLinePadding` is set to `true`.
+    ## Invoke `printf(format, args)` or `fputs(format, stdout)` based on args len passed to this macro with new-line at the beginning and end unless `NO_NEWLINE_PADDING` is set to `true`.
     runnableExamples:
         printPaddedLine("Hello, World!") # -> "\nHello, World!\n\n" ( default behaviour )
-        printPaddedLine("Hello, World!") # -> "Hello, World!\n" ( when `NoNewLinePadding` is `true` )
+        printPaddedLine("Hello, World!") # -> "Hello, World!\n" ( when `NO_NEWLINE_PADDING` is `true` )
 
-    when NoNewLinePadding:
+    when NO_NEWLINE_PADDING:
         return quote do:
             print(`format` & "\n", `args`)
     else:

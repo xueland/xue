@@ -19,5 +19,5 @@ task docs, "serve documentation":
 
 task docsgen, "generate documentation":
     rmDir "./docs"
-    exec "nim doc --project --index:on --outdir:docs ./xue.nim"
+    exec "nim doc --project --index:on --git.url:https://github.com/xueland/xue --git.commit:main --outdir:docs ./xue.nim"
     mvFile "./docs/xue.html", "./docs/index.html"

@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,25 +44,33 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
-    Modules: <a href="common/ioutils.html">common/ioutils</a>, <a href="common/libc.html">common/libc</a>, <a href="common/tweaks.html">common/tweaks</a>.<br/><p /><h2>API symbols</h2>
+    Modules: <a href="common/ioutils.html">common/ioutils</a>, <a href="common/libc.html">common/libc</a>, <a href="common/tweaks.html">common/tweaks</a>, <a href="xue.html">xue</a>.<br/><p /><h2>API symbols</h2>
 <dl><dt><a name="EXIT_STATUS_FAILURE" href="#EXIT_STATUS_FAILURE"><span>EXIT_STATUS_FAILURE:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="tweaks: EXIT_STATUS_FAILURE" href="common/tweaks.html#EXIT_STATUS_FAILURE">tweaks: EXIT_STATUS_FAILURE</a></li>
@@ -88,9 +95,9 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="libc: fputs(s: cstring; stream: File)" href="common/libc.html#fputs%2Ccstring%2CFile">libc: fputs(s: cstring; stream: File)</a></li>
           </ul></dd>
-<dt><a name="NoNewLinePadding" href="#NoNewLinePadding"><span>NoNewLinePadding:</span></a></dt><dd><ul class="simple">
+<dt><a name="NO_NEWLINE_PADDING" href="#NO_NEWLINE_PADDING"><span>NO_NEWLINE_PADDING:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="tweaks: NoNewLinePadding" href="common/tweaks.html#NoNewLinePadding">tweaks: NoNewLinePadding</a></li>
+          data-doc-search-tag="tweaks: NO_NEWLINE_PADDING" href="common/tweaks.html#NO_NEWLINE_PADDING">tweaks: NO_NEWLINE_PADDING</a></li>
           </ul></dd>
 <dt><a name="print" href="#print"><span>print:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -111,6 +118,18 @@ function main() {
 <dt><a name="puts" href="#puts"><span>puts:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="libc: puts(s: cstring)" href="common/libc.html#puts%2Ccstring">libc: puts(s: cstring)</a></li>
+          </ul></dd>
+<dt><a name="runCodeString" href="#runCodeString"><span>runCodeString:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="xue: runCodeString(code: string; sourcePath: string)" href="xue.html#runCodeString%2Cstring%2Cstring">xue: runCodeString(code: string; sourcePath: string)</a></li>
+          </ul></dd>
+<dt><a name="runFromFile" href="#runFromFile"><span>runFromFile:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="xue: runFromFile(path: string)" href="xue.html#runFromFile%2Cstring">xue: runFromFile(path: string)</a></li>
+          </ul></dd>
+<dt><a name="runFromREPL" href="#runFromREPL"><span>runFromREPL:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="xue: runFromREPL()" href="xue.html#runFromREPL">xue: runFromREPL()</a></li>
           </ul></dd>
 <dt><a name="XUE_VERSION_BUILD" href="#XUE_VERSION_BUILD"><span>XUE_VERSION_BUILD:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -137,7 +156,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-08-20 04:42:00 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-08-29 06:28:49 UTC</small>
       </div>
     </div>
   </div>

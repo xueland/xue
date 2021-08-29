@@ -1,7 +1,7 @@
 import strformat, strutils
 
 const
-    NoNewLinePadding* {.booldefine.} = false ## whether new-line padding should be inserted when `printPaddedLine` is called
+    NO_NEWLINE_PADDING* {.booldefine.} = false ## whether new-line padding should be inserted when `printPaddedLine` is called
 
     XUE_VERSION_MAJOR* {.intdefine.} = 1 ## xue major version number
     XUE_VERSION_MINOR* {.intdefine.} = 0 ## xue minor version number

@@ -3,6 +3,7 @@
 root="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" &> /dev/null && pwd )"
 previous=$(pwd)
 
+# move to project dir
 cd $root
 
 # build x86
@@ -18,4 +19,5 @@ mv $root/bin/{xue,xue-macosx-arm64}
 # build universal
 lipo -create -output $root/bin/xue $root/bin/xue-macosx-amd64 $root/bin/xue-macosx-arm64
 
+# move to previous dir
 cd $previous

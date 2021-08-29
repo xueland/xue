@@ -15,7 +15,7 @@ You can call whatever as u like: Xue, XueLand or 雪地.
 
 ## HOW TO BUILD
 
-Just clone the repo, then run `nimble build`.
+Just clone the repo, then run `nimble build`. But, now, this project is built on top of nim devel branch. So, some code won't work in current nim stable (1.4.8).
 
 ```bash
 git clone https://github.com/xueland/xue && cd xue
