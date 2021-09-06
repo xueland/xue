@@ -1,0 +1,17 @@
+---
+.code:
+  - push 0        # "Hein Hein"
+  - push 1        # variable "name"
+  - set global    # set 0 to 1
+  - push 2        # "Hello, I'm "
+  - get global 1  # get variable name
+  - concat        # concat with 1
+  - push 3        # ". Nice to meet u!"
+  - concat        # concat with 3
+  - call printLn  # call printLn to 
+  - return        # return proc
+.data:
+  - "Hein Hein"
+  - "name"
+  - "Hello, I'm "
+  - ". Nice to meet u!"
