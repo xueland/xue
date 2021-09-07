@@ -1,0 +1,12 @@
+OP_PUSH	machine/opcode.html#OP_PUSH	XueOpCode.OP_PUSH	
+OP_POP	machine/opcode.html#OP_POP	XueOpCode.OP_POP	
+OP_RETURN	machine/opcode.html#OP_RETURN	XueOpCode.OP_RETURN	
+XueOpCode	machine/opcode.html#XueOpCode	opcode: XueOpCode	
+LineStat	machine/opcode.html#LineStat	opcode: LineStat	
+XueChunk	machine/opcode.html#XueChunk	opcode: XueChunk	
+writeChunk	machine/opcode.html#writeChunk,ptr.XueChunk,,cint	opcode: writeChunk(chunk: ptr XueChunk; u8: uint8 | XueOpCode; line: cint)	
+addConstantChunk	machine/opcode.html#addConstantChunk,ptr.XueChunk,XueValue	opcode: addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int	
+getLineFromChunk	machine/opcode.html#getLineFromChunk,ptr.XueChunk,cint	opcode: getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint	
+writeConstantChunk	machine/opcode.html#writeConstantChunk,ptr.XueChunk,XueValue,cint	opcode: writeConstantChunk(chunk: ptr XueChunk; constant: XueValue; line: cint)	
+disassembleInstruction	machine/opcode.html#disassembleInstruction,ptr.XueChunk,cint	opcode: disassembleInstruction(chunk: ptr XueChunk; offset: cint): cint	
+disassembleChunk	machine/opcode.html#disassembleChunk,ptr.XueChunk,string	opcode: disassembleChunk(chunk: ptr XueChunk; name: string)	

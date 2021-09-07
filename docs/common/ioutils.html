@@ -34,6 +34,7 @@ function main() {
     }
   }
 
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -44,29 +45,21 @@ function main() {
       }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-  if (toggleSwitch !== null) {
-    toggleSwitch.addEventListener('change', switchTheme, false);
-  }
+  toggleSwitch.addEventListener('change', switchTheme, false);
 
-  var currentTheme = localStorage.getItem('theme');
-  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    currentTheme = 'dark';
-  }
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark' && toggleSwitch !== null) {
+    if (currentTheme === 'dark') {
       toggleSwitch.checked = true;
     }
   }
 }
-
-window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body>
+<body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">common/ioutils</h1>
@@ -107,21 +100,12 @@ window.addEventListener('DOMContentLoaded', main);
 <li>
   <a class="reference reference-toplevel" href="#17" id="67">Macros</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">print
       <li><a class="reference" href="#print.m%2Ccstring%2Cvarargs%5Buntyped%5D"
-    title="print(format: cstring; args: varargs[untyped]): untyped">print(format: cstring; args: varargs[untyped]): untyped</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">printLine
-      <li><a class="reference" href="#printLine.m%2Ccstring%2Cvarargs%5Buntyped%5D"
-    title="printLine(format: cstring; args: varargs[untyped]): untyped">printLine(format: cstring; args: varargs[untyped]): untyped</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">printPaddedLine
-      <li><a class="reference" href="#printPaddedLine.m%2Ccstring%2Cvarargs%5Buntyped%5D"
-    title="printPaddedLine(format: cstring; args: varargs[untyped]): untyped">printPaddedLine(format: cstring; args: varargs[untyped]): untyped</a></li>
-
-  </ul>
+    title="print(format: cstring; args: varargs[untyped]): untyped">print</a></li>
+  <li><a class="reference" href="#printLine.m%2Ccstring%2Cvarargs%5Buntyped%5D"
+    title="printLine(format: cstring; args: varargs[untyped]): untyped">printLine</a></li>
+  <li><a class="reference" href="#printPaddedLine.m%2Ccstring%2Cvarargs%5Buntyped%5D"
+    title="printPaddedLine(format: cstring; args: varargs[untyped]): untyped">printPaddedLine</a></li>
 
   </ul>
 </li>
@@ -129,11 +113,6 @@ window.addEventListener('DOMContentLoaded', main);
 </ul>
 
   </div>
-  &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/common/ioutils.nim#L1"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/common/ioutils.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
-
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -146,56 +125,53 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="17">
 <h1><a class="toc-backref" href="#17">Macros</a></h1>
 <dl class="item">
-<div id="print.m,cstring,varargs[untyped]">
+<a id="print.m,cstring,varargs[untyped]"></a>
 <dt><pre><span class="Keyword">macro</span> <a href="#print.m%2Ccstring%2Cvarargs%5Buntyped%5D"><span class="Identifier">print</span></a><span class="Other">(</span><span class="Identifier">format</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
-<p>Wrapper around libc <tt class="docutils literal"><span class="pre"><span class="Identifier">printf</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Identifier">fputs</span></span></tt>.</p>
-<p>Invoke <tt class="docutils literal"><span class="pre"><span class="Identifier">printf</span><span class="Punctuation">(</span><span class="Identifier">format</span><span class="Punctuation">,</span> <span class="Identifier">args</span><span class="Punctuation">)</span></span></tt> or <tt class="docutils literal"><span class="pre"><span class="Identifier">fputs</span><span class="Punctuation">(</span><span class="Identifier">format</span><span class="Punctuation">,</span> <span class="Identifier">stdout</span><span class="Punctuation">)</span></span></tt> based on args len passed to this macro.</p>
+<p>Wrapper around libc <tt class="docutils literal"><span class="pre">printf</span></tt> and <tt class="docutils literal"><span class="pre">fputs</span></tt>.</p>
+<p>Invoke <tt class="docutils literal"><span class="pre">printf(format, args)</span></tt> or <tt class="docutils literal"><span class="pre">fputs(format, stdout)</span></tt> based on args len passed to this macro.</p>
 
 <p><strong class="examples_text">Example:</strong></p>
-<pre class="listing"><span class="Identifier">print</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!</span><span class="EscapeSequence">\n</span><span class="StringLit">&quot;</span><span class="Punctuation">)</span> <span class="Comment"># -&gt; &quot;Hello, World!\n&quot;</span>
-<span class="Identifier">print</span><span class="Punctuation">(</span><span class="StringLit">&quot;%s</span><span class="EscapeSequence">\n</span><span class="StringLit">&quot;</span><span class="Punctuation">,</span> <span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span> <span class="Comment"># -&gt; &quot;Hello, World!\n&quot;</span></pre>
+<pre class="listing"><span class="Identifier">print</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!</span><span class="EscapeSequence">\n</span><span class="StringLit">&quot;</span><span class="Punctuation">)</span><span class="Whitespace"> </span><span class="Comment"># -&gt; &quot;Hello, World!\n&quot;</span><span class="Whitespace">
+</span><span class="Identifier">print</span><span class="Punctuation">(</span><span class="StringLit">&quot;%s</span><span class="EscapeSequence">\n</span><span class="StringLit">&quot;</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span><span class="Whitespace"> </span><span class="Comment"># -&gt; &quot;Hello, World!\n&quot;</span></pre>
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/common/ioutils.nim#L5"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/common/ioutils.nim#L5" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/common/ioutils.nim#L5" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-</div>
-<div id="printLine.m,cstring,varargs[untyped]">
+<a id="printLine.m,cstring,varargs[untyped]"></a>
 <dt><pre><span class="Keyword">macro</span> <a href="#printLine.m%2Ccstring%2Cvarargs%5Buntyped%5D"><span class="Identifier">printLine</span></a><span class="Other">(</span><span class="Identifier">format</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
-<p>Wrapper around libc <tt class="docutils literal"><span class="pre"><span class="Identifier">printf</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Identifier">puts</span></span></tt>.</p>
-<p>Invoke <tt class="docutils literal"><span class="pre"><span class="Identifier">printf</span><span class="Punctuation">(</span><span class="Identifier">format</span><span class="Punctuation">,</span> <span class="Identifier">args</span><span class="Punctuation">)</span></span></tt> or <tt class="docutils literal"><span class="pre"><span class="Identifier">fputs</span><span class="Punctuation">(</span><span class="Identifier">format</span><span class="Punctuation">,</span> <span class="Identifier">stdout</span><span class="Punctuation">)</span></span></tt> based on args len passed to this macro with new-line at the end.</p>
+<p>Wrapper around libc <tt class="docutils literal"><span class="pre">printf</span></tt> and <tt class="docutils literal"><span class="pre">puts</span></tt>.</p>
+<p>Invoke <tt class="docutils literal"><span class="pre">printf(format, args)</span></tt> or <tt class="docutils literal"><span class="pre">fputs(format, stdout)</span></tt> based on args len passed to this macro with new-line at the end.</p>
 
 <p><strong class="examples_text">Example:</strong></p>
-<pre class="listing"><span class="Identifier">printLine</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span> <span class="Comment"># -&gt; &quot;Hello, World!\n&quot;</span></pre>
+<pre class="listing"><span class="Identifier">printLine</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span><span class="Whitespace"> </span><span class="Comment"># -&gt; &quot;Hello, World!\n&quot;</span></pre>
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/common/ioutils.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/common/ioutils.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/common/ioutils.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-</div>
-<div id="printPaddedLine.m,cstring,varargs[untyped]">
+<a id="printPaddedLine.m,cstring,varargs[untyped]"></a>
 <dt><pre><span class="Keyword">macro</span> <a href="#printPaddedLine.m%2Ccstring%2Cvarargs%5Buntyped%5D"><span class="Identifier">printPaddedLine</span></a><span class="Other">(</span><span class="Identifier">format</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
-<p>Wrapper around libc <tt class="docutils literal"><span class="pre"><span class="Identifier">printf</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Identifier">puts</span></span></tt>.</p>
-<p>Invoke <tt class="docutils literal"><span class="pre"><span class="Identifier">printf</span><span class="Punctuation">(</span><span class="Identifier">format</span><span class="Punctuation">,</span> <span class="Identifier">args</span><span class="Punctuation">)</span></span></tt> or <tt class="docutils literal"><span class="pre"><span class="Identifier">fputs</span><span class="Punctuation">(</span><span class="Identifier">format</span><span class="Punctuation">,</span> <span class="Identifier">stdout</span><span class="Punctuation">)</span></span></tt> based on args len passed to this macro with new-line at the beginning and end unless <tt class="docutils literal"><span class="pre"><span class="Identifier">NO_NEWLINE_PADDING</span></span></tt> is set to <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt>.</p>
+<p>Wrapper around libc <tt class="docutils literal"><span class="pre">printf</span></tt> and <tt class="docutils literal"><span class="pre">puts</span></tt>.</p>
+<p>Invoke <tt class="docutils literal"><span class="pre">printf(format, args)</span></tt> or <tt class="docutils literal"><span class="pre">fputs(format, stdout)</span></tt> based on args len passed to this macro with new-line at the beginning and end unless <tt class="docutils literal"><span class="pre">NO_NEWLINE_PADDING</span></tt> is set to <tt class="docutils literal"><span class="pre">true</span></tt>.</p>
 
 <p><strong class="examples_text">Example:</strong></p>
-<pre class="listing"><span class="Identifier">printPaddedLine</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span> <span class="Comment"># -&gt; &quot;\nHello, World!\n\n&quot; ( default behaviour )</span>
-<span class="Identifier">printPaddedLine</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span> <span class="Comment"># -&gt; &quot;Hello, World!\n&quot; ( when `NO_NEWLINE_PADDING` is `true` )</span></pre>
+<pre class="listing"><span class="Identifier">printPaddedLine</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span><span class="Whitespace"> </span><span class="Comment"># -&gt; &quot;\nHello, World!\n\n&quot; ( default behaviour )</span><span class="Whitespace">
+</span><span class="Identifier">printPaddedLine</span><span class="Punctuation">(</span><span class="StringLit">&quot;Hello, World!&quot;</span><span class="Punctuation">)</span><span class="Whitespace"> </span><span class="Comment"># -&gt; &quot;Hello, World!\n&quot; ( when `NO_NEWLINE_PADDING` is `true` )</span></pre>
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/common/ioutils.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/common/ioutils.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/common/ioutils.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-</div>
 
 </dl></div>
 
@@ -206,7 +182,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-06 14:02:56 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-07 10:42:33 UTC</small>
       </div>
     </div>
   </div>

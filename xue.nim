@@ -1,6 +1,7 @@
-import common/[ioutils,tweaks]
 import strutils, parseopt, os
 import terminal, rdstdin
+import common/[ioutils,tweaks]
+import machine/[opcode]
 
 proc printVersion(shouldExit: bool = true) =
     ## print interpreter version, license, etc.
@@ -28,7 +29,9 @@ proc printHelp() =
 
 proc runCodeString*(code: string, sourcePath: string) =
     ## compile given code to instructions and then interpret using VM.
-    echo "running ", sourcePath, "\n", code
+    var chunk: XueChunk
+    writeChunk(addr(chunk), OP_RETURN, 123)
+    disassembleChunk(addr(chunk), "test chunk")
 
 proc readStringFromPath(path: string): string =
     ## read content of given path. read stdin if path is "-".

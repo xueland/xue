@@ -1,7 +1,7 @@
 proc printf*(format: cstring) {.importc: "printf", varargs, header: "<stdio.h>".}
     ## binding for `printf` from `stdio.h`
 
-proc fprintf*(stream: File, format: cstring) {.importc: "printf", varargs, header: "<stdio.h>".}
+proc fprintf*(stream: File, format: cstring) {.importc: "fprintf", varargs, header: "<stdio.h>".}
     ## binding for `fprintf` from `stdio.h`
 
 proc puts*(s: cstring) {.importc: "puts", header: "<stdio.h>".}

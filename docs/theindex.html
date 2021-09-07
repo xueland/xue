@@ -34,6 +34,7 @@ function main() {
     }
   }
 
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -44,34 +45,42 @@ function main() {
       }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-  if (toggleSwitch !== null) {
-    toggleSwitch.addEventListener('change', switchTheme, false);
-  }
+  toggleSwitch.addEventListener('change', switchTheme, false);
 
-  var currentTheme = localStorage.getItem('theme');
-  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    currentTheme = 'dark';
-  }
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark' && toggleSwitch !== null) {
+    if (currentTheme === 'dark') {
       toggleSwitch.checked = true;
     }
   }
 }
-
-window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body>
+<body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
-    Modules: <a href="common/ioutils.html">common/ioutils</a>, <a href="common/libc.html">common/libc</a>, <a href="common/tweaks.html">common/tweaks</a>, <a href="xue.html">xue</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="EXIT_STATUS_FAILURE" href="#EXIT_STATUS_FAILURE"><span>EXIT_STATUS_FAILURE:</span></a></dt><dd><ul class="simple">
+    Modules: <a href="common/ioutils.html">common/ioutils</a>, <a href="common/libc.html">common/libc</a>, <a href="common/tweaks.html">common/tweaks</a>, <a href="machine/opcode.html">machine/opcode</a>, <a href="machine/value.html">machine/value</a>, <a href="xue.html">xue</a>.<br/><p /><h2>API symbols</h2>
+<dl><dt><a name="addConstantChunk" href="#addConstantChunk"><span>addConstantChunk:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int" href="machine/opcode.html#addConstantChunk%2Cptr.XueChunk%2CXueValue">opcode: addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int</a></li>
+          </ul></dd>
+<dt><a name="COMPOSITE_LIST" href="#COMPOSITE_LIST"><span>COMPOSITE_LIST:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueCompositeKind.COMPOSITE_LIST" href="machine/value.html#COMPOSITE_LIST">XueCompositeKind.COMPOSITE_LIST</a></li>
+          </ul></dd>
+<dt><a name="disassembleChunk" href="#disassembleChunk"><span>disassembleChunk:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: disassembleChunk(chunk: ptr XueChunk; name: string)" href="machine/opcode.html#disassembleChunk%2Cptr.XueChunk%2Cstring">opcode: disassembleChunk(chunk: ptr XueChunk; name: string)</a></li>
+          </ul></dd>
+<dt><a name="disassembleInstruction" href="#disassembleInstruction"><span>disassembleInstruction:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: disassembleInstruction(chunk: ptr XueChunk; offset: cint): cint" href="machine/opcode.html#disassembleInstruction%2Cptr.XueChunk%2Ccint">opcode: disassembleInstruction(chunk: ptr XueChunk; offset: cint): cint</a></li>
+          </ul></dd>
+<dt><a name="EXIT_STATUS_FAILURE" href="#EXIT_STATUS_FAILURE"><span>EXIT_STATUS_FAILURE:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="tweaks: EXIT_STATUS_FAILURE" href="common/tweaks.html#EXIT_STATUS_FAILURE">tweaks: EXIT_STATUS_FAILURE</a></li>
           </ul></dd>
@@ -95,9 +104,29 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="libc: fputs(s: cstring; stream: File)" href="common/libc.html#fputs%2Ccstring%2CFile">libc: fputs(s: cstring; stream: File)</a></li>
           </ul></dd>
+<dt><a name="getLineFromChunk" href="#getLineFromChunk"><span>getLineFromChunk:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint" href="machine/opcode.html#getLineFromChunk%2Cptr.XueChunk%2Ccint">opcode: getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint</a></li>
+          </ul></dd>
+<dt><a name="LineStat" href="#LineStat"><span>LineStat:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: LineStat" href="machine/opcode.html#LineStat">opcode: LineStat</a></li>
+          </ul></dd>
 <dt><a name="NO_NEWLINE_PADDING" href="#NO_NEWLINE_PADDING"><span>NO_NEWLINE_PADDING:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="tweaks: NO_NEWLINE_PADDING" href="common/tweaks.html#NO_NEWLINE_PADDING">tweaks: NO_NEWLINE_PADDING</a></li>
+          </ul></dd>
+<dt><a name="OP_POP" href="#OP_POP"><span>OP_POP:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_POP" href="machine/opcode.html#OP_POP">XueOpCode.OP_POP</a></li>
+          </ul></dd>
+<dt><a name="OP_PUSH" href="#OP_PUSH"><span>OP_PUSH:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_PUSH" href="machine/opcode.html#OP_PUSH">XueOpCode.OP_PUSH</a></li>
+          </ul></dd>
+<dt><a name="OP_RETURN" href="#OP_RETURN"><span>OP_RETURN:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_RETURN" href="machine/opcode.html#OP_RETURN">XueOpCode.OP_RETURN</a></li>
           </ul></dd>
 <dt><a name="print" href="#print"><span>print:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -131,6 +160,70 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="xue: runFromREPL()" href="xue.html#runFromREPL">xue: runFromREPL()</a></li>
           </ul></dd>
+<dt><a name="VALUE_BOOLEAN" href="#VALUE_BOOLEAN"><span>VALUE_BOOLEAN:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueValueKind.VALUE_BOOLEAN" href="machine/value.html#VALUE_BOOLEAN">XueValueKind.VALUE_BOOLEAN</a></li>
+          </ul></dd>
+<dt><a name="VALUE_CHARACTER" href="#VALUE_CHARACTER"><span>VALUE_CHARACTER:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueValueKind.VALUE_CHARACTER" href="machine/value.html#VALUE_CHARACTER">XueValueKind.VALUE_CHARACTER</a></li>
+          </ul></dd>
+<dt><a name="VALUE_COMPOSITE" href="#VALUE_COMPOSITE"><span>VALUE_COMPOSITE:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueValueKind.VALUE_COMPOSITE" href="machine/value.html#VALUE_COMPOSITE">XueValueKind.VALUE_COMPOSITE</a></li>
+          </ul></dd>
+<dt><a name="VALUE_DOUBLE" href="#VALUE_DOUBLE"><span>VALUE_DOUBLE:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueValueKind.VALUE_DOUBLE" href="machine/value.html#VALUE_DOUBLE">XueValueKind.VALUE_DOUBLE</a></li>
+          </ul></dd>
+<dt><a name="VALUE_INTEGER" href="#VALUE_INTEGER"><span>VALUE_INTEGER:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueValueKind.VALUE_INTEGER" href="machine/value.html#VALUE_INTEGER">XueValueKind.VALUE_INTEGER</a></li>
+          </ul></dd>
+<dt><a name="VALUE_NOTVAL" href="#VALUE_NOTVAL"><span>VALUE_NOTVAL:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueValueKind.VALUE_NOTVAL" href="machine/value.html#VALUE_NOTVAL">XueValueKind.VALUE_NOTVAL</a></li>
+          </ul></dd>
+<dt><a name="VALUE_NULL" href="#VALUE_NULL"><span>VALUE_NULL:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueValueKind.VALUE_NULL" href="machine/value.html#VALUE_NULL">XueValueKind.VALUE_NULL</a></li>
+          </ul></dd>
+<dt><a name="writeChunk" href="#writeChunk"><span>writeChunk:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: writeChunk(chunk: ptr XueChunk; u8: uint8 | XueOpCode; line: cint)" href="machine/opcode.html#writeChunk%2Cptr.XueChunk%2C%2Ccint">opcode: writeChunk(chunk: ptr XueChunk; u8: uint8 | XueOpCode; line: cint)</a></li>
+          </ul></dd>
+<dt><a name="writeConstantChunk" href="#writeConstantChunk"><span>writeConstantChunk:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: writeConstantChunk(chunk: ptr XueChunk; constant: XueValue; line: cint)" href="machine/opcode.html#writeConstantChunk%2Cptr.XueChunk%2CXueValue%2Ccint">opcode: writeConstantChunk(chunk: ptr XueChunk; constant: XueValue; line: cint)</a></li>
+          </ul></dd>
+<dt><a name="XueChunk" href="#XueChunk"><span>XueChunk:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: XueChunk" href="machine/opcode.html#XueChunk">opcode: XueChunk</a></li>
+          </ul></dd>
+<dt><a name="XueComposite" href="#XueComposite"><span>XueComposite:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="value: XueComposite" href="machine/value.html#XueComposite">value: XueComposite</a></li>
+          </ul></dd>
+<dt><a name="XueCompositeKind" href="#XueCompositeKind"><span>XueCompositeKind:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="value: XueCompositeKind" href="machine/value.html#XueCompositeKind">value: XueCompositeKind</a></li>
+          </ul></dd>
+<dt><a name="XueList" href="#XueList"><span>XueList:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="value: XueList" href="machine/value.html#XueList">value: XueList</a></li>
+          </ul></dd>
+<dt><a name="XueOpCode" href="#XueOpCode"><span>XueOpCode:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="opcode: XueOpCode" href="machine/opcode.html#XueOpCode">opcode: XueOpCode</a></li>
+          </ul></dd>
+<dt><a name="XueValue" href="#XueValue"><span>XueValue:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="value: XueValue" href="machine/value.html#XueValue">value: XueValue</a></li>
+          </ul></dd>
+<dt><a name="XueValueKind" href="#XueValueKind"><span>XueValueKind:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="value: XueValueKind" href="machine/value.html#XueValueKind">value: XueValueKind</a></li>
+          </ul></dd>
 <dt><a name="XUE_VERSION_BUILD" href="#XUE_VERSION_BUILD"><span>XUE_VERSION_BUILD:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="tweaks: XUE_VERSION_BUILD" href="common/tweaks.html#XUE_VERSION_BUILD">tweaks: XUE_VERSION_BUILD</a></li>
@@ -156,7 +249,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-06 14:02:56 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-07 10:42:33 UTC</small>
       </div>
     </div>
   </div>
