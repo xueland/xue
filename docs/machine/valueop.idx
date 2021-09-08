@@ -1,0 +1,19 @@
+numberOperation	machine/valueop.html#numberOperation.t,,,,	valueop: numberOperation(op, integerOp, doubleOp, errorMessage): untyped	
+`+`	machine/valueop.html#+,XueValue,XueValue	valueop: `+`(a`gensym0: XueValue; b`gensym0: XueValue): XueValue	
+`-`	machine/valueop.html#-,XueValue,XueValue	valueop: `-`(a`gensym2: XueValue; b`gensym2: XueValue): XueValue	
+`*`	machine/valueop.html#*,XueValue,XueValue	valueop: `*`(a`gensym4: XueValue; b`gensym4: XueValue): XueValue	
+`/`	machine/valueop.html#/,XueValue,XueValue	valueop: `/`(a`gensym6: XueValue; b`gensym6: XueValue): XueValue	
+`mod`	machine/valueop.html#mod,XueValue,XueValue	valueop: `mod`(a`gensym8: XueValue; b`gensym8: XueValue): XueValue	
+`^`	machine/valueop.html#^,XueValue,XueValue	valueop: `^`(a`gensym10: XueValue; b`gensym10: XueValue): XueValue	
+`-`	machine/valueop.html#-,XueValue	valueop: `-`(value: XueValue): XueValue	
+bitand	machine/valueop.html#bitand,XueValue,XueValue	valueop: bitand(a`gensym13: XueValue; b`gensym13: XueValue): XueValue	
+bitor	machine/valueop.html#bitor,XueValue,XueValue	valueop: bitor(a`gensym15: XueValue; b`gensym15: XueValue): XueValue	
+bitxor	machine/valueop.html#bitxor,XueValue,XueValue	valueop: bitxor(a`gensym17: XueValue; b`gensym17: XueValue): XueValue	
+bitshl	machine/valueop.html#bitshl,XueValue,XueValue	valueop: bitshl(a`gensym19: XueValue; b`gensym19: XueValue): XueValue	
+bitshr	machine/valueop.html#bitshr,XueValue,XueValue	valueop: bitshr(a`gensym21: XueValue; b`gensym21: XueValue): XueValue	
+`&lt;`	machine/valueop.html#<,XueValue,XueValue	valueop: `&lt;`(a: XueValue; b: XueValue): XueValue	
+`&gt;`	machine/valueop.html#>,XueValue,XueValue	valueop: `&gt;`(a: XueValue; b: XueValue): XueValue	
+bitnot	machine/valueop.html#bitnot,XueValue	valueop: bitnot(value: XueValue): XueValue	
+`not`	machine/valueop.html#not,XueComposite	valueop: `not`(value: XueComposite): XueValue	
+`not`	machine/valueop.html#not,XueValue	valueop: `not`(value: XueValue): XueValue	
+`==`	machine/valueop.html#==,XueValue,XueValue	valueop: `==`(a: XueValue; b: XueValue): XueValue	

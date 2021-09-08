@@ -1,7 +1,7 @@
 import strutils, parseopt, os
-import terminal, rdstdin
+import terminal, rdstdin, unicode
 import common/[ioutils,tweaks]
-import machine/[opcode]
+import machine/[opcode,machine,value]
 
 proc printVersion(shouldExit: bool = true) =
     ## print interpreter version, license, etc.
@@ -30,8 +30,10 @@ proc printHelp() =
 proc runCodeString*(code: string, sourcePath: string) =
     ## compile given code to instructions and then interpret using VM.
     var chunk: XueChunk
+    writeConstantChunk(addr(chunk), XueValue(kind: VALUE_CHARACTER, character: "က".runeAt(0)), 123)
     writeChunk(addr(chunk), OP_RETURN, 123)
     disassembleChunk(addr(chunk), "test chunk")
+    discard interpretChunk(addr(chunk))
 
 proc readStringFromPath(path: string): string =
     ## read content of given path. read stdin if path is "-".
@@ -52,7 +54,7 @@ proc readStringFromPath(path: string): string =
 proc runFromFile*(path: string) =
     ## read code from given path, compile and interpret
     let code = readStringFromPath(path)
-    if code.strip() != "":
+    if strutils.strip(code) != "":
         runCodeString(code, path)
 
 proc readLine(prompt: string): string =
@@ -91,7 +93,7 @@ proc runFromREPL*() =
     printVersion(false)
     while true:
         let userInput = readLine("xue > ")
-        let strippedInput = userInput.strip()
+        let strippedInput = strutils.strip(userInput)
 
         if strippedInput == "":
             continue

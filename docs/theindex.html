@@ -63,14 +63,86 @@ function main() {
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
-    Modules: <a href="common/ioutils.html">common/ioutils</a>, <a href="common/libc.html">common/libc</a>, <a href="common/tweaks.html">common/tweaks</a>, <a href="machine/opcode.html">machine/opcode</a>, <a href="machine/value.html">machine/value</a>, <a href="xue.html">xue</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="addConstantChunk" href="#addConstantChunk"><span>addConstantChunk:</span></a></dt><dd><ul class="simple">
+    Modules: <a href="common/ioutils.html">common/ioutils</a>, <a href="common/libc.html">common/libc</a>, <a href="common/tweaks.html">common/tweaks</a>, <a href="machine/machine.html">machine/machine</a>, <a href="machine/opcode.html">machine/opcode</a>, <a href="machine/value.html">machine/value</a>, <a href="machine/valueop.html">machine/valueop</a>, <a href="xue.html">xue</a>.<br/><p /><h2>API symbols</h2>
+<dl><dt><a name="%60%26gt%3B%60" href="#%60%26gt%3B%60"><span>`&gt;`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `&gt;`(a: XueValue; b: XueValue): XueValue" href="machine/valueop.html#%3E%2CXueValue%2CXueValue">valueop: `&gt;`(a: XueValue; b: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60%26lt%3B%60" href="#%60%26lt%3B%60"><span>`&lt;`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `&lt;`(a: XueValue; b: XueValue): XueValue" href="machine/valueop.html#%3C%2CXueValue%2CXueValue">valueop: `&lt;`(a: XueValue; b: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60%2A%60" href="#%60%2A%60"><span>`*`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `*`(a`gensym4: XueValue; b`gensym4: XueValue): XueValue" href="machine/valueop.html#%2A%2CXueValue%2CXueValue">valueop: `*`(a`gensym4: XueValue; b`gensym4: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60%2B%60" href="#%60%2B%60"><span>`+`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `+`(a`gensym0: XueValue; b`gensym0: XueValue): XueValue" href="machine/valueop.html#%2B%2CXueValue%2CXueValue">valueop: `+`(a`gensym0: XueValue; b`gensym0: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60-%60" href="#%60-%60"><span>`-`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `-`(value: XueValue): XueValue" href="machine/valueop.html#-%2CXueValue">valueop: `-`(value: XueValue): XueValue</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="valueop: `-`(a`gensym2: XueValue; b`gensym2: XueValue): XueValue" href="machine/valueop.html#-%2CXueValue%2CXueValue">valueop: `-`(a`gensym2: XueValue; b`gensym2: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60/%60" href="#%60/%60"><span>`/`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `/`(a`gensym6: XueValue; b`gensym6: XueValue): XueValue" href="machine/valueop.html#/%2CXueValue%2CXueValue">valueop: `/`(a`gensym6: XueValue; b`gensym6: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60%3D%3D%60" href="#%60%3D%3D%60"><span>`==`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `==`(a: XueValue; b: XueValue): XueValue" href="machine/valueop.html#%3D%3D%2CXueValue%2CXueValue">valueop: `==`(a: XueValue; b: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60%5E%60" href="#%60%5E%60"><span>`^`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `^`(a`gensym10: XueValue; b`gensym10: XueValue): XueValue" href="machine/valueop.html#%5E%2CXueValue%2CXueValue">valueop: `^`(a`gensym10: XueValue; b`gensym10: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60mod%60" href="#%60mod%60"><span>`mod`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `mod`(a`gensym8: XueValue; b`gensym8: XueValue): XueValue" href="machine/valueop.html#mod%2CXueValue%2CXueValue">valueop: `mod`(a`gensym8: XueValue; b`gensym8: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="%60not%60" href="#%60not%60"><span>`not`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: `not`(value: XueComposite): XueValue" href="machine/valueop.html#not%2CXueComposite">valueop: `not`(value: XueComposite): XueValue</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="valueop: `not`(value: XueValue): XueValue" href="machine/valueop.html#not%2CXueValue">valueop: `not`(value: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="addConstantChunk" href="#addConstantChunk"><span>addConstantChunk:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="opcode: addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int" href="machine/opcode.html#addConstantChunk%2Cptr.XueChunk%2CXueValue">opcode: addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int</a></li>
+          </ul></dd>
+<dt><a name="bitand" href="#bitand"><span>bitand:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: bitand(a`gensym13: XueValue; b`gensym13: XueValue): XueValue" href="machine/valueop.html#bitand%2CXueValue%2CXueValue">valueop: bitand(a`gensym13: XueValue; b`gensym13: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="bitnot" href="#bitnot"><span>bitnot:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: bitnot(value: XueValue): XueValue" href="machine/valueop.html#bitnot%2CXueValue">valueop: bitnot(value: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="bitor" href="#bitor"><span>bitor:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: bitor(a`gensym15: XueValue; b`gensym15: XueValue): XueValue" href="machine/valueop.html#bitor%2CXueValue%2CXueValue">valueop: bitor(a`gensym15: XueValue; b`gensym15: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="bitshl" href="#bitshl"><span>bitshl:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: bitshl(a`gensym19: XueValue; b`gensym19: XueValue): XueValue" href="machine/valueop.html#bitshl%2CXueValue%2CXueValue">valueop: bitshl(a`gensym19: XueValue; b`gensym19: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="bitshr" href="#bitshr"><span>bitshr:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: bitshr(a`gensym21: XueValue; b`gensym21: XueValue): XueValue" href="machine/valueop.html#bitshr%2CXueValue%2CXueValue">valueop: bitshr(a`gensym21: XueValue; b`gensym21: XueValue): XueValue</a></li>
+          </ul></dd>
+<dt><a name="bitxor" href="#bitxor"><span>bitxor:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: bitxor(a`gensym17: XueValue; b`gensym17: XueValue): XueValue" href="machine/valueop.html#bitxor%2CXueValue%2CXueValue">valueop: bitxor(a`gensym17: XueValue; b`gensym17: XueValue): XueValue</a></li>
           </ul></dd>
 <dt><a name="COMPOSITE_LIST" href="#COMPOSITE_LIST"><span>COMPOSITE_LIST:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="XueCompositeKind.COMPOSITE_LIST" href="machine/value.html#COMPOSITE_LIST">XueCompositeKind.COMPOSITE_LIST</a></li>
+          </ul></dd>
+<dt><a name="DEBUG_TRACE_EXECUTION" href="#DEBUG_TRACE_EXECUTION"><span>DEBUG_TRACE_EXECUTION:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="tweaks: DEBUG_TRACE_EXECUTION" href="common/tweaks.html#DEBUG_TRACE_EXECUTION">tweaks: DEBUG_TRACE_EXECUTION</a></li>
           </ul></dd>
 <dt><a name="disassembleChunk" href="#disassembleChunk"><span>disassembleChunk:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -108,6 +180,18 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="opcode: getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint" href="machine/opcode.html#getLineFromChunk%2Cptr.XueChunk%2Ccint">opcode: getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint</a></li>
           </ul></dd>
+<dt><a name="interpretChunk" href="#interpretChunk"><span>interpretChunk:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="machine: interpretChunk(chunk: ptr XueChunk): XueInterpretResult" href="machine/machine.html#interpretChunk%2Cptr.XueChunk">machine: interpretChunk(chunk: ptr XueChunk): XueInterpretResult</a></li>
+          </ul></dd>
+<dt><a name="INTERPRET_OK" href="#INTERPRET_OK"><span>INTERPRET_OK:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueInterpretResult.INTERPRET_OK" href="machine/machine.html#INTERPRET_OK">XueInterpretResult.INTERPRET_OK</a></li>
+          </ul></dd>
+<dt><a name="INTERPRET_RUNTIME_ERROR" href="#INTERPRET_RUNTIME_ERROR"><span>INTERPRET_RUNTIME_ERROR:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueInterpretResult.INTERPRET_RUNTIME_ERROR" href="machine/machine.html#INTERPRET_RUNTIME_ERROR">XueInterpretResult.INTERPRET_RUNTIME_ERROR</a></li>
+          </ul></dd>
 <dt><a name="LineStat" href="#LineStat"><span>LineStat:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="opcode: LineStat" href="machine/opcode.html#LineStat">opcode: LineStat</a></li>
@@ -116,9 +200,77 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="tweaks: NO_NEWLINE_PADDING" href="common/tweaks.html#NO_NEWLINE_PADDING">tweaks: NO_NEWLINE_PADDING</a></li>
           </ul></dd>
+<dt><a name="numberOperation" href="#numberOperation"><span>numberOperation:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="valueop: numberOperation(op, integerOp, doubleOp, errorMessage): untyped" href="machine/valueop.html#numberOperation.t%2C%2C%2C%2C">valueop: numberOperation(op, integerOp, doubleOp, errorMessage): untyped</a></li>
+          </ul></dd>
+<dt><a name="OP_ADD" href="#OP_ADD"><span>OP_ADD:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_ADD" href="machine/opcode.html#OP_ADD">XueOpCode.OP_ADD</a></li>
+          </ul></dd>
+<dt><a name="OP_BITAND" href="#OP_BITAND"><span>OP_BITAND:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_BITAND" href="machine/opcode.html#OP_BITAND">XueOpCode.OP_BITAND</a></li>
+          </ul></dd>
+<dt><a name="OP_BITLSH" href="#OP_BITLSH"><span>OP_BITLSH:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_BITLSH" href="machine/opcode.html#OP_BITLSH">XueOpCode.OP_BITLSH</a></li>
+          </ul></dd>
+<dt><a name="OP_BITNOT" href="#OP_BITNOT"><span>OP_BITNOT:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_BITNOT" href="machine/opcode.html#OP_BITNOT">XueOpCode.OP_BITNOT</a></li>
+          </ul></dd>
+<dt><a name="OP_BITOR" href="#OP_BITOR"><span>OP_BITOR:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_BITOR" href="machine/opcode.html#OP_BITOR">XueOpCode.OP_BITOR</a></li>
+          </ul></dd>
+<dt><a name="OP_BITRSH" href="#OP_BITRSH"><span>OP_BITRSH:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_BITRSH" href="machine/opcode.html#OP_BITRSH">XueOpCode.OP_BITRSH</a></li>
+          </ul></dd>
+<dt><a name="OP_BITXOR" href="#OP_BITXOR"><span>OP_BITXOR:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_BITXOR" href="machine/opcode.html#OP_BITXOR">XueOpCode.OP_BITXOR</a></li>
+          </ul></dd>
+<dt><a name="OP_DIVIDE" href="#OP_DIVIDE"><span>OP_DIVIDE:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_DIVIDE" href="machine/opcode.html#OP_DIVIDE">XueOpCode.OP_DIVIDE</a></li>
+          </ul></dd>
+<dt><a name="OP_EQUAL" href="#OP_EQUAL"><span>OP_EQUAL:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_EQUAL" href="machine/opcode.html#OP_EQUAL">XueOpCode.OP_EQUAL</a></li>
+          </ul></dd>
+<dt><a name="OP_GREATER" href="#OP_GREATER"><span>OP_GREATER:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_GREATER" href="machine/opcode.html#OP_GREATER">XueOpCode.OP_GREATER</a></li>
+          </ul></dd>
+<dt><a name="OP_LESS" href="#OP_LESS"><span>OP_LESS:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_LESS" href="machine/opcode.html#OP_LESS">XueOpCode.OP_LESS</a></li>
+          </ul></dd>
+<dt><a name="OP_MODULO" href="#OP_MODULO"><span>OP_MODULO:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_MODULO" href="machine/opcode.html#OP_MODULO">XueOpCode.OP_MODULO</a></li>
+          </ul></dd>
+<dt><a name="OP_MULTIPLY" href="#OP_MULTIPLY"><span>OP_MULTIPLY:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_MULTIPLY" href="machine/opcode.html#OP_MULTIPLY">XueOpCode.OP_MULTIPLY</a></li>
+          </ul></dd>
+<dt><a name="OP_NEGATE" href="#OP_NEGATE"><span>OP_NEGATE:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_NEGATE" href="machine/opcode.html#OP_NEGATE">XueOpCode.OP_NEGATE</a></li>
+          </ul></dd>
+<dt><a name="OP_NOT" href="#OP_NOT"><span>OP_NOT:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_NOT" href="machine/opcode.html#OP_NOT">XueOpCode.OP_NOT</a></li>
+          </ul></dd>
 <dt><a name="OP_POP" href="#OP_POP"><span>OP_POP:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="XueOpCode.OP_POP" href="machine/opcode.html#OP_POP">XueOpCode.OP_POP</a></li>
+          </ul></dd>
+<dt><a name="OP_POWER" href="#OP_POWER"><span>OP_POWER:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_POWER" href="machine/opcode.html#OP_POWER">XueOpCode.OP_POWER</a></li>
           </ul></dd>
 <dt><a name="OP_PUSH" href="#OP_PUSH"><span>OP_PUSH:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -127,6 +279,10 @@ function main() {
 <dt><a name="OP_RETURN" href="#OP_RETURN"><span>OP_RETURN:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="XueOpCode.OP_RETURN" href="machine/opcode.html#OP_RETURN">XueOpCode.OP_RETURN</a></li>
+          </ul></dd>
+<dt><a name="OP_SUBTRACT" href="#OP_SUBTRACT"><span>OP_SUBTRACT:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="XueOpCode.OP_SUBTRACT" href="machine/opcode.html#OP_SUBTRACT">XueOpCode.OP_SUBTRACT</a></li>
           </ul></dd>
 <dt><a name="print" href="#print"><span>print:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -208,6 +364,10 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="value: XueCompositeKind" href="machine/value.html#XueCompositeKind">value: XueCompositeKind</a></li>
           </ul></dd>
+<dt><a name="XueInterpretResult" href="#XueInterpretResult"><span>XueInterpretResult:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="machine: XueInterpretResult" href="machine/machine.html#XueInterpretResult">machine: XueInterpretResult</a></li>
+          </ul></dd>
 <dt><a name="XueList" href="#XueList"><span>XueList:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="value: XueList" href="machine/value.html#XueList">value: XueList</a></li>
@@ -215,6 +375,10 @@ function main() {
 <dt><a name="XueOpCode" href="#XueOpCode"><span>XueOpCode:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="opcode: XueOpCode" href="machine/opcode.html#XueOpCode">opcode: XueOpCode</a></li>
+          </ul></dd>
+<dt><a name="XueRuntimeError" href="#XueRuntimeError"><span>XueRuntimeError:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="machine: XueRuntimeError" href="machine/machine.html#XueRuntimeError">machine: XueRuntimeError</a></li>
           </ul></dd>
 <dt><a name="XueValue" href="#XueValue"><span>XueValue:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -244,12 +408,16 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="tweaks: XUE_VERSION_STRING" href="common/tweaks.html#XUE_VERSION_STRING">tweaks: XUE_VERSION_STRING</a></li>
           </ul></dd>
+<dt><a name="XueVirtualMachine" href="#XueVirtualMachine"><span>XueVirtualMachine:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="machine: XueVirtualMachine" href="machine/machine.html#XueVirtualMachine">machine: XueVirtualMachine</a></li>
+          </ul></dd>
 </dl>
     <div class="row">
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-07 10:42:33 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-08 05:15:07 UTC</small>
       </div>
     </div>
   </div>

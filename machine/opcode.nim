@@ -1,9 +1,27 @@
+import strutils
 import value, ../common/[ioutils, libc, tweaks]
 
 type
     XueOpCode* = enum
         OP_PUSH,
         OP_POP,
+        OP_ADD,
+        OP_SUBTRACT,
+        OP_NEGATE,
+        OP_MULTIPLY,
+        OP_DIVIDE,
+        OP_MODULO,
+        OP_POWER,
+        OP_BITAND,
+        OP_BITOR,
+        OP_BITXOR,
+        OP_BITLSH,
+        OP_BITRSH,
+        OP_LESS,
+        OP_GREATER,
+        OP_EQUAL,
+        OP_NOT,
+        OP_BITNOT,
         OP_RETURN
 
     LineStat* = tuple ## line status information struct
@@ -35,18 +53,18 @@ proc searchLine(arr: seq[LineStat], offset: cint): int =
 
     while start <= last:
         mid = (start + last) div 2
-        if arr[mid].offset < offset:
-            start = mid + 1
-        elif arr[mid].offset > offset:
+        if arr[mid].offset > offset:
             last = mid - 1
-        else:
+        elif mid == arr.len() - 1 or offset < arr[mid + 1].offset:
             return mid
+        else:
+            start = mid + 1
     return -1
 
 proc getLineFromChunk*(chunk: ptr XueChunk, offset: cint): cint =
     ## get line number of instruction offset.
     let index = searchLine(chunk.line, offset)
-    if index != -1:
+    if index == -1:
         printPaddedLine("Oops, invalid or corrupted instruction chunk!")
         quit(EXIT_STATUS_FAILURE)
     return chunk.line[index].line
@@ -62,7 +80,7 @@ proc writeConstantChunk*(chunk: ptr XueChunk, constant: XueValue, line: cint) =
 
 proc constantInstruction(name: string, chunk: ptr XueChunk, offset: cint): cint =
     if offset >= chunk.code.len() - 1:
-        printPaddedLine("Oops, corrupted instruction chunk!")
+        printPaddedLine("Oops, invalid or corrupted instruction chunk!")
         quit(EXIT_STATUS_FAILURE)
 
     let u8s = [
@@ -72,7 +90,7 @@ proc constantInstruction(name: string, chunk: ptr XueChunk, offset: cint): cint 
         chunk.code[offset + 4],
     ]
 
-    let index: int = cast[int](u8s)
+    let index: int = cast[cint](u8s)
     if index >= chunk.data.len():
         printPaddedLine("Oops, invalid PUSH instruction!")
         quit(EXIT_STATUS_FAILURE)
@@ -90,10 +108,8 @@ proc disassembleInstruction*(chunk: ptr XueChunk, offset: cint): cint =
     case opcode
     of OP_PUSH:
         return constantInstruction("PUSH", chunk, offset)
-    of OP_POP:
-        return simpleInstruction("POP", offset)
-    of OP_RETURN:
-        return simpleInstruction("RETURN", offset)
+    else:
+        return simpleInstruction(replace($opcode, "OP_"), offset)
 
 proc disassembleChunk*(chunk: ptr XueChunk, name: string) =
     ## disassemble code, data, debug message from a chunk

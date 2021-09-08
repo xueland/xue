@@ -102,7 +102,9 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#XueOpCode"
     title="XueOpCode = enum
-  OP_PUSH, OP_POP, OP_RETURN">XueOpCode</a></li>
+  OP_PUSH, OP_POP, OP_ADD, OP_SUBTRACT, OP_NEGATE, OP_MULTIPLY, OP_DIVIDE,
+  OP_MODULO, OP_POWER, OP_BITAND, OP_BITOR, OP_BITXOR, OP_BITLSH, OP_BITRSH,
+  OP_LESS, OP_GREATER, OP_EQUAL, OP_NOT, OP_BITNOT, OP_RETURN">XueOpCode</a></li>
   <li><a class="reference" href="#LineStat"
     title="LineStat = tuple[offset, line: cint]">LineStat</a></li>
   <li><a class="reference" href="#XueChunk"
@@ -167,14 +169,16 @@ function main() {
 <dl class="item">
 <a id="XueOpCode"></a>
 <dt><pre><a href="opcode.html#XueOpCode"><span class="Identifier">XueOpCode</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">OP_PUSH</span><span class="Other">,</span> <span class="Identifier">OP_POP</span><span class="Other">,</span> <span class="Identifier">OP_RETURN</span></pre></dt>
+  <span class="Identifier">OP_PUSH</span><span class="Other">,</span> <span class="Identifier">OP_POP</span><span class="Other">,</span> <span class="Identifier">OP_ADD</span><span class="Other">,</span> <span class="Identifier">OP_SUBTRACT</span><span class="Other">,</span> <span class="Identifier">OP_NEGATE</span><span class="Other">,</span> <span class="Identifier">OP_MULTIPLY</span><span class="Other">,</span> <span class="Identifier">OP_DIVIDE</span><span class="Other">,</span>
+  <span class="Identifier">OP_MODULO</span><span class="Other">,</span> <span class="Identifier">OP_POWER</span><span class="Other">,</span> <span class="Identifier">OP_BITAND</span><span class="Other">,</span> <span class="Identifier">OP_BITOR</span><span class="Other">,</span> <span class="Identifier">OP_BITXOR</span><span class="Other">,</span> <span class="Identifier">OP_BITLSH</span><span class="Other">,</span> <span class="Identifier">OP_BITRSH</span><span class="Other">,</span>
+  <span class="Identifier">OP_LESS</span><span class="Other">,</span> <span class="Identifier">OP_GREATER</span><span class="Other">,</span> <span class="Identifier">OP_EQUAL</span><span class="Other">,</span> <span class="Identifier">OP_NOT</span><span class="Other">,</span> <span class="Identifier">OP_BITNOT</span><span class="Other">,</span> <span class="Identifier">OP_RETURN</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L4"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L5"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L5" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="LineStat"></a>
@@ -183,9 +187,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 line status information struct
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L9"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="XueChunk"></a>
@@ -198,9 +202,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 container for instructions, constant data, debug informations
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L12"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -214,9 +218,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 add u8 at given line to chunk.
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L17"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="addConstantChunk,ptr.XueChunk,XueValue"></a>
@@ -226,9 +230,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 add constant data to chunk's data section.
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L25"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L43"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="getLineFromChunk,ptr.XueChunk,cint"></a>
@@ -238,9 +242,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 get line number of instruction offset.
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L46"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L64"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="writeConstantChunk,ptr.XueChunk,XueValue,cint"></a>
@@ -250,9 +254,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 add constant data to chunk's data section and write PUSH instruction
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L54"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="disassembleInstruction,ptr.XueChunk,cint"></a>
@@ -262,9 +266,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 disassemble instruction at given offset from a chunk
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L86"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L104"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L86" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L104" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="disassembleChunk,ptr.XueChunk,string"></a>
@@ -273,9 +277,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 disassemble code, data, debug message from a chunk
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L98"
+href="https://github.com/xueland/xue/tree/main/machine/opcode.nim#L114"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L98" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/machine/opcode.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -288,7 +292,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-07 10:42:33 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-08 05:15:07 UTC</small>
       </div>
     </div>
   </div>

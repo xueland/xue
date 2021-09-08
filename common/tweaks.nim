@@ -14,3 +14,5 @@ const
     EXIT_STATUS_SUCCESS* = 0        ## operation is succeeded
     EXIT_STATUS_FAILURE* = 1        ## operation is failed with some error
     EXIT_STATUS_WRONG_USAGE* = 2    ## operation is failed due to invalid CLI usage, etc.
+
+    DEBUG_TRACE_EXECUTION* {.booldefine.} = true

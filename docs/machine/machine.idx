@@ -1,0 +1,6 @@
+XueVirtualMachine	machine/machine.html#XueVirtualMachine	machine: XueVirtualMachine	
+INTERPRET_OK	machine/machine.html#INTERPRET_OK	XueInterpretResult.INTERPRET_OK	
+INTERPRET_RUNTIME_ERROR	machine/machine.html#INTERPRET_RUNTIME_ERROR	XueInterpretResult.INTERPRET_RUNTIME_ERROR	
+XueInterpretResult	machine/machine.html#XueInterpretResult	machine: XueInterpretResult	
+XueRuntimeError	machine/machine.html#XueRuntimeError	machine: XueRuntimeError	
+interpretChunk	machine/machine.html#interpretChunk,ptr.XueChunk	machine: interpretChunk(chunk: ptr XueChunk): XueInterpretResult	

@@ -1,5 +1,22 @@
 OP_PUSH	machine/opcode.html#OP_PUSH	XueOpCode.OP_PUSH	
 OP_POP	machine/opcode.html#OP_POP	XueOpCode.OP_POP	
+OP_ADD	machine/opcode.html#OP_ADD	XueOpCode.OP_ADD	
+OP_SUBTRACT	machine/opcode.html#OP_SUBTRACT	XueOpCode.OP_SUBTRACT	
+OP_NEGATE	machine/opcode.html#OP_NEGATE	XueOpCode.OP_NEGATE	
+OP_MULTIPLY	machine/opcode.html#OP_MULTIPLY	XueOpCode.OP_MULTIPLY	
+OP_DIVIDE	machine/opcode.html#OP_DIVIDE	XueOpCode.OP_DIVIDE	
+OP_MODULO	machine/opcode.html#OP_MODULO	XueOpCode.OP_MODULO	
+OP_POWER	machine/opcode.html#OP_POWER	XueOpCode.OP_POWER	
+OP_BITAND	machine/opcode.html#OP_BITAND	XueOpCode.OP_BITAND	
+OP_BITOR	machine/opcode.html#OP_BITOR	XueOpCode.OP_BITOR	
+OP_BITXOR	machine/opcode.html#OP_BITXOR	XueOpCode.OP_BITXOR	
+OP_BITLSH	machine/opcode.html#OP_BITLSH	XueOpCode.OP_BITLSH	
+OP_BITRSH	machine/opcode.html#OP_BITRSH	XueOpCode.OP_BITRSH	
+OP_LESS	machine/opcode.html#OP_LESS	XueOpCode.OP_LESS	
+OP_GREATER	machine/opcode.html#OP_GREATER	XueOpCode.OP_GREATER	
+OP_EQUAL	machine/opcode.html#OP_EQUAL	XueOpCode.OP_EQUAL	
+OP_NOT	machine/opcode.html#OP_NOT	XueOpCode.OP_NOT	
+OP_BITNOT	machine/opcode.html#OP_BITNOT	XueOpCode.OP_BITNOT	
 OP_RETURN	machine/opcode.html#OP_RETURN	XueOpCode.OP_RETURN	
 XueOpCode	machine/opcode.html#XueOpCode	opcode: XueOpCode	
 LineStat	machine/opcode.html#LineStat	opcode: LineStat	
