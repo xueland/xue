@@ -107,7 +107,8 @@ function main() {
   stack: seq[XueValue]">XueVirtualMachine</a></li>
   <li><a class="reference" href="#XueInterpretResult"
     title="XueInterpretResult = enum
-  INTERPRET_OK, INTERPRET_RUNTIME_ERROR">XueInterpretResult</a></li>
+  INTERPRET_OK,             ## it&apos;s OK ... it works!
+  INTERPRET_RUNTIME_ERROR    ## oops, we have runtime error">XueInterpretResult</a></li>
   <li><a class="reference" href="#XueRuntimeError"
     title="XueRuntimeError = object of CatchableError">XueRuntimeError</a></li>
 
@@ -150,32 +151,33 @@ function main() {
 
 the Xue VM
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/machine.nim#L6"
+href="https://github.com/xueland/xue/tree/main/src/machine/machine.nim#L6"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/machine.nim#L6" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/src/machine/machine.nim#L6" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="XueInterpretResult"></a>
 <dt><pre><a href="machine.html#XueInterpretResult"><span class="Identifier">XueInterpretResult</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">INTERPRET_OK</span><span class="Other">,</span> <span class="Identifier">INTERPRET_RUNTIME_ERROR</span></pre></dt>
+  <span class="Identifier">INTERPRET_OK</span><span class="Other">,</span>             <span class="Comment">## it's OK ... it works!</span>
+  <span class="Identifier">INTERPRET_RUNTIME_ERROR</span>    <span class="Comment">## oops, we have runtime error</span></pre></dt>
 <dd>
 
-
+interpret result
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/machine.nim#L11"
+href="https://github.com/xueland/xue/tree/main/src/machine/machine.nim#L11"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/machine.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/src/machine/machine.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="XueRuntimeError"></a>
 <dt><pre><a href="machine.html#XueRuntimeError"><span class="Identifier">XueRuntimeError</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">CatchableError</span></pre></dt>
 <dd>
 
-
+just runtime error struct with error message
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/machine.nim#L15"
+href="https://github.com/xueland/xue/tree/main/src/machine/machine.nim#L15"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/machine.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/src/machine/machine.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -188,11 +190,11 @@ class="link-seesrc" target="_blank">Source</a>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+interpret given xue chunk
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/machine/machine.nim#L126"
+href="https://github.com/xueland/xue/tree/main/src/machine/machine.nim#L126"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/machine/machine.nim#L126" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/xueland/xue/edit/devel/src/machine/machine.nim#L126" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -205,7 +207,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-08 05:15:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 02:55:17 UTC</small>
       </div>
     </div>
   </div>

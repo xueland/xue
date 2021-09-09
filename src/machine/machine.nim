@@ -8,11 +8,11 @@ type
         eip: cint
         stack: seq[XueValue]
 
-    XueInterpretResult* = enum
-        INTERPRET_OK,
-        INTERPRET_RUNTIME_ERROR
+    XueInterpretResult* = enum  ## interpret result
+        INTERPRET_OK,           ## it's OK ... it works!
+        INTERPRET_RUNTIME_ERROR ## oops, we have runtime error
 
-    XueRuntimeError* = object of CatchableError
+    XueRuntimeError* = object of CatchableError ## just runtime error struct with error message
 
 var vm: XueVirtualMachine
 
@@ -124,5 +124,6 @@ proc execute(): XueInterpretResult =
         return INTERPRET_RUNTIME_ERROR
 
 proc interpretChunk*(chunk: ptr XueChunk): XueInterpretResult =
+    ## interpret given xue chunk
     vm.chunk = chunk
     return execute()

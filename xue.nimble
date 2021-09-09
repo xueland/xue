@@ -2,6 +2,7 @@ version             = "1.0.0"
 author              = "Hein Thant Maung Maung"
 description         = "Just a simple programming language called XueLand."
 license             = "MIT"
+srcDir              = "src"
 bin                 = @["xue"]
 namedBin["xue"]     = "bin/xue"
 
@@ -19,5 +20,5 @@ task docs, "serve documentation":
 
 task docsgen, "generate documentation":
     rmDir "./docs"
-    exec "nim doc --project --index:on --git.url:https://github.com/xueland/xue --git.commit:main --outdir:docs ./xue.nim"
+    exec "nim doc --project --index:on --git.url:https://github.com/xueland/xue --git.commit:main --outdir:docs ./src/xue.nim"
     mvFile "./docs/xue.html", "./docs/index.html"
