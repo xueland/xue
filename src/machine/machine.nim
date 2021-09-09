@@ -1,6 +1,5 @@
 import opcode, value, valueop
 import ../common/[ioutils,tweaks,libc]
-import unicode
 
 type
     XueVirtualMachine* = object ## the Xue VM
@@ -51,8 +50,8 @@ proc execute(): XueInterpretResult =
             when DEBUG_TRACE_EXECUTION:
                 fprintf(stderr, "[vmach] ")
                 for value in vm.stack:
-                    fprintf(stderr, "[ %s ]", $value)
-                fprintf(stderr, if vm.stack.len() == 0: "no value in stack\n" else: "\n")
+                    fprintf(stderr, "[ %s ]", cstring($value))
+                fprintf(stderr, if vm.stack.len() == 0: cstring("no value in stack\n") else: cstring("\n"))
                 fprintf(stderr, "[vmach] ")
                 discard disassembleInstruction(vm.chunk, vm.eip)
             {.computedGoto.}
@@ -115,9 +114,7 @@ proc execute(): XueInterpretResult =
                     printPaddedLine(error.msg)
                     return INTERPRET_RUNTIME_ERROR
             of OP_RETURN:
-                let r = vm.stack.pop()
-                if r.kind == VALUE_CHARACTER:
-                    echo $r.character
+                echo $vm.stack.pop()
                 return INTERPRET_OK
     except XueRuntimeError as runtimeError:
         printPaddedLine(runtimeError.msg)
@@ -126,4 +123,5 @@ proc execute(): XueInterpretResult =
 proc interpretChunk*(chunk: ptr XueChunk): XueInterpretResult =
     ## interpret given xue chunk
     vm.chunk = chunk
+    vm.eip = 0
     return execute()

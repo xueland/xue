@@ -1,4 +1,4 @@
-import unicode
+import unicode, strformat, strutils, sequtils, sugar
 
 type
     XueValueKind* = enum
@@ -38,3 +38,31 @@ type
     XueList* = ref object of XueComposite
         ## list value - contains lists of XueValue
         items*: seq[XueValue]
+
+proc `$`*(value: XueValue): string
+    ## just forward declaration of `$`(value: XueValue): string
+
+proc `$`*(value: XueComposite): string =
+    ## convert XueComposite value to string
+    case value.kind
+    of COMPOSITE_LIST:
+        let reprList = XueList(value).items.map(item => $item).join(", ")
+        return fmt"[{reprList}]"
+
+proc `$`*(value: XueValue): string =
+    ## convert XueValue to string
+    case value.kind
+    of VALUE_NOTVAL:
+        return "notval"
+    of VALUE_NULL:
+        return "NULL"
+    of VALUE_BOOLEAN:
+        return $value.boolean
+    of VALUE_DOUBLE:
+        return $value.double
+    of VALUE_INTEGER:
+        return $value.integer
+    of VALUE_CHARACTER:
+        return fmt"'{value.character}'"
+    of VALUE_COMPOSITE:
+        return $value.composite

@@ -2,7 +2,7 @@ import macros
 import libc
 import tweaks
 
-macro print*(format: cstring, args: varargs[untyped]): untyped =
+macro print*(format: string, args: varargs[untyped]): untyped =
     ## Wrapper around libc `printf` and `fputs`.
     ## 
     ## Invoke `printf(format, args)` or `fputs(format, stdout)` based on args len passed to this macro.
@@ -12,12 +12,12 @@ macro print*(format: cstring, args: varargs[untyped]): untyped =
 
     if args.len() == 0:
         return quote do:
-            fputs(`format`, stdout)
+            fputs(cstring(`format`), stdout)
     else:
         return quote do:
-            printf(`format`, `args`)
+            printf(cstring(`format`), `args`)
 
-macro printLine*(format: cstring, args: varargs[untyped]): untyped =
+macro printLine*(format: string, args: varargs[untyped]): untyped =
     ## Wrapper around libc `printf` and `puts`.
     ## 
     ## Invoke `printf(format, args)` or `fputs(format, stdout)` based on args len passed to this macro with new-line at the end.
@@ -27,7 +27,7 @@ macro printLine*(format: cstring, args: varargs[untyped]): untyped =
     return quote do:
         print(`format` & "\n", `args`)
 
-macro printPaddedLine*(format: cstring, args: varargs[untyped]): untyped =
+macro printPaddedLine*(format: string, args: varargs[untyped]): untyped =
     ## Wrapper around libc `printf` and `puts`.
     ## 
     ## Invoke `printf(format, args)` or `fputs(format, stdout)` based on args len passed to this macro with new-line at the beginning and end unless `NO_NEWLINE_PADDING` is set to `true`.

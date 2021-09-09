@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>machine/opcode</title>
+<title>src/machine/opcode</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,24 +44,32 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">machine/opcode</h1>
+    <h1 class="title">src/machine/opcode</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -100,52 +107,52 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#XueOpCode"
-    title="XueOpCode = enum
-  OP_PUSH, OP_POP, OP_ADD, OP_SUBTRACT, OP_NEGATE, OP_MULTIPLY, OP_DIVIDE,
-  OP_MODULO, OP_POWER, OP_BITAND, OP_BITOR, OP_BITXOR, OP_BITLSH, OP_BITRSH,
-  OP_LESS, OP_GREATER, OP_EQUAL, OP_NOT, OP_BITNOT, OP_RETURN">XueOpCode</a></li>
-  <li><a class="reference" href="#LineStat"
+      <li><a class="reference" href="#LineStat"
     title="LineStat = tuple[offset, line: cint]">LineStat</a></li>
   <li><a class="reference" href="#XueChunk"
     title="XueChunk = object
   code*: seq[uint8]
   data*: seq[XueValue]
   line*: seq[LineStat]">XueChunk</a></li>
+  <li><a class="reference" href="#XueOpCode"
+    title="XueOpCode = enum
+  OP_PUSH, OP_POP, OP_ADD, OP_SUBTRACT, OP_NEGATE, OP_MULTIPLY, OP_DIVIDE,
+  OP_MODULO, OP_POWER, OP_BITAND, OP_BITOR, OP_BITXOR, OP_BITLSH, OP_BITRSH,
+  OP_LESS, OP_GREATER, OP_EQUAL, OP_NOT, OP_BITNOT, OP_RETURN">XueOpCode</a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">writeChunk
-      <li><a class="reference" href="#writeChunk%2Cptr.XueChunk%2C%2Ccint"
-    title="writeChunk(chunk: ptr XueChunk; u8: uint8 | XueOpCode; line: cint)">writeChunk,<wbr>ptr.XueChunk,<wbr>,<wbr>cint</a></li>
+      <ul class="simple nested-toc-section">addConstantChunk
+      <li><a class="reference" href="#addConstantChunk%2Cptr.XueChunk%2CXueValue"
+    title="addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int">addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">disassembleChunk
       <li><a class="reference" href="#disassembleChunk%2Cptr.XueChunk%2Cstring"
-    title="disassembleChunk(chunk: ptr XueChunk; name: string)">disassembleChunk,<wbr>ptr.XueChunk,<wbr>string</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">writeConstantChunk
-      <li><a class="reference" href="#writeConstantChunk%2Cptr.XueChunk%2CXueValue%2Ccint"
-    title="writeConstantChunk(chunk: ptr XueChunk; constant: XueValue; line: cint)">writeConstantChunk,<wbr>ptr.XueChunk,<wbr>XueValue,<wbr>cint</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">addConstantChunk
-      <li><a class="reference" href="#addConstantChunk%2Cptr.XueChunk%2CXueValue"
-    title="addConstantChunk(chunk: ptr XueChunk; constant: XueValue): int">addConstantChunk,<wbr>ptr.XueChunk,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">getLineFromChunk
-      <li><a class="reference" href="#getLineFromChunk%2Cptr.XueChunk%2Ccint"
-    title="getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint">getLineFromChunk,<wbr>ptr.XueChunk,<wbr>cint</a></li>
+    title="disassembleChunk(chunk: ptr XueChunk; name: string)">disassembleChunk(chunk: ptr XueChunk; name: string)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">disassembleInstruction
       <li><a class="reference" href="#disassembleInstruction%2Cptr.XueChunk%2Ccint"
-    title="disassembleInstruction(chunk: ptr XueChunk; offset: cint): cint">disassembleInstruction,<wbr>ptr.XueChunk,<wbr>cint</a></li>
+    title="disassembleInstruction(chunk: ptr XueChunk; offset: cint): cint">disassembleInstruction(chunk: ptr XueChunk; offset: cint): cint</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">getLineFromChunk
+      <li><a class="reference" href="#getLineFromChunk%2Cptr.XueChunk%2Ccint"
+    title="getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint">getLineFromChunk(chunk: ptr XueChunk; offset: cint): cint</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">writeChunk
+      <li><a class="reference" href="#writeChunk%2Cptr.XueChunk%2C%2Ccint"
+    title="writeChunk(chunk: ptr XueChunk; u8: uint8 | XueOpCode; line: cint)">writeChunk(chunk: ptr XueChunk; u8: uint8 | XueOpCode; line: cint)</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">writeConstantChunk
+      <li><a class="reference" href="#writeConstantChunk%2Cptr.XueChunk%2CXueValue%2Ccint"
+    title="writeConstantChunk(chunk: ptr XueChunk; constant: XueValue; line: cint)">writeConstantChunk(chunk: ptr XueChunk; constant: XueValue; line: cint)</a></li>
 
   </ul>
 
@@ -155,6 +162,11 @@ function main() {
 </ul>
 
   </div>
+  &nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L1"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
+
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -167,21 +179,7 @@ function main() {
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<a id="XueOpCode"></a>
-<dt><pre><a href="opcode.html#XueOpCode"><span class="Identifier">XueOpCode</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">OP_PUSH</span><span class="Other">,</span> <span class="Identifier">OP_POP</span><span class="Other">,</span> <span class="Identifier">OP_ADD</span><span class="Other">,</span> <span class="Identifier">OP_SUBTRACT</span><span class="Other">,</span> <span class="Identifier">OP_NEGATE</span><span class="Other">,</span> <span class="Identifier">OP_MULTIPLY</span><span class="Other">,</span> <span class="Identifier">OP_DIVIDE</span><span class="Other">,</span>
-  <span class="Identifier">OP_MODULO</span><span class="Other">,</span> <span class="Identifier">OP_POWER</span><span class="Other">,</span> <span class="Identifier">OP_BITAND</span><span class="Other">,</span> <span class="Identifier">OP_BITOR</span><span class="Other">,</span> <span class="Identifier">OP_BITXOR</span><span class="Other">,</span> <span class="Identifier">OP_BITLSH</span><span class="Other">,</span> <span class="Identifier">OP_BITRSH</span><span class="Other">,</span>
-  <span class="Identifier">OP_LESS</span><span class="Other">,</span> <span class="Identifier">OP_GREATER</span><span class="Other">,</span> <span class="Identifier">OP_EQUAL</span><span class="Other">,</span> <span class="Identifier">OP_NOT</span><span class="Other">,</span> <span class="Identifier">OP_BITNOT</span><span class="Other">,</span> <span class="Identifier">OP_RETURN</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L5"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L5" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="LineStat"></a>
+<div id="LineStat">
 <dt><pre><a href="opcode.html#LineStat"><span class="Identifier">LineStat</span></a> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">offset</span><span class="Other">,</span> <span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">]</span></pre></dt>
 <dd>
 
@@ -189,10 +187,11 @@ line status information struct
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="XueChunk"></a>
+</div>
+<div id="XueChunk">
 <dt><pre><a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
   <span class="Identifier">code</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span>
   <span class="Identifier">data</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">]</span>
@@ -204,15 +203,83 @@ container for instructions, constant data, debug informations
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+</div>
+<div id="XueOpCode">
+<dt><pre><a href="opcode.html#XueOpCode"><span class="Identifier">XueOpCode</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">OP_PUSH</span><span class="Other">,</span> <span class="Identifier">OP_POP</span><span class="Other">,</span> <span class="Identifier">OP_ADD</span><span class="Other">,</span> <span class="Identifier">OP_SUBTRACT</span><span class="Other">,</span> <span class="Identifier">OP_NEGATE</span><span class="Other">,</span> <span class="Identifier">OP_MULTIPLY</span><span class="Other">,</span> <span class="Identifier">OP_DIVIDE</span><span class="Other">,</span>
+  <span class="Identifier">OP_MODULO</span><span class="Other">,</span> <span class="Identifier">OP_POWER</span><span class="Other">,</span> <span class="Identifier">OP_BITAND</span><span class="Other">,</span> <span class="Identifier">OP_BITOR</span><span class="Other">,</span> <span class="Identifier">OP_BITXOR</span><span class="Other">,</span> <span class="Identifier">OP_BITLSH</span><span class="Other">,</span> <span class="Identifier">OP_BITRSH</span><span class="Other">,</span>
+  <span class="Identifier">OP_LESS</span><span class="Other">,</span> <span class="Identifier">OP_GREATER</span><span class="Other">,</span> <span class="Identifier">OP_EQUAL</span><span class="Other">,</span> <span class="Identifier">OP_NOT</span><span class="Other">,</span> <span class="Identifier">OP_BITNOT</span><span class="Other">,</span> <span class="Identifier">OP_RETURN</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L5"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L5" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
 
 </dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<a id="writeChunk,ptr.XueChunk,,cint"></a>
+<div id="addConstantChunk,ptr.XueChunk,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#addConstantChunk%2Cptr.XueChunk%2CXueValue"><span class="Identifier">addConstantChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">constant</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+add constant data to chunk's data section.
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L43"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="disassembleChunk,ptr.XueChunk,string">
+<dt><pre><span class="Keyword">proc</span> <a href="#disassembleChunk%2Cptr.XueChunk%2Cstring"><span class="Identifier">disassembleChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+disassemble code, data, debug message from a chunk
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L114"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="disassembleInstruction,ptr.XueChunk,cint">
+<dt><pre><span class="Keyword">proc</span> <a href="#disassembleInstruction%2Cptr.XueChunk%2Ccint"><span class="Identifier">disassembleInstruction</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">offset</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+disassemble instruction at given offset from a chunk
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L104"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L104" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="getLineFromChunk,ptr.XueChunk,cint">
+<dt><pre><span class="Keyword">proc</span> <a href="#getLineFromChunk%2Cptr.XueChunk%2Ccint"><span class="Identifier">getLineFromChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">offset</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+get line number of instruction offset.
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L64"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="writeChunk,ptr.XueChunk,,cint">
 <dt><pre><span class="Keyword">proc</span> <a href="#writeChunk%2Cptr.XueChunk%2C%2Ccint"><span class="Identifier">writeChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">u8</span><span class="Other">:</span> <span class="Identifier">uint8</span> <span class="Operator">|</span> <a href="opcode.html#XueOpCode"><span class="Identifier">XueOpCode</span></a><span class="Other">;</span> <span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span></pre></dt>
 <dd>
 
@@ -220,68 +287,23 @@ add u8 at given line to chunk.
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="addConstantChunk,ptr.XueChunk,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#addConstantChunk%2Cptr.XueChunk%2CXueValue"><span class="Identifier">addConstantChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">constant</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-add constant data to chunk's data section.
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L43"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="getLineFromChunk,ptr.XueChunk,cint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#getLineFromChunk%2Cptr.XueChunk%2Ccint"><span class="Identifier">getLineFromChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">offset</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-get line number of instruction offset.
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L64"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="writeConstantChunk,ptr.XueChunk,XueValue,cint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#writeConstantChunk%2Cptr.XueChunk%2CXueValue%2Ccint"><span class="Identifier">writeConstantChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">constant</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+</div>
+<div id="writeConstantChunk,ptr.XueChunk,XueValue,cint">
+<dt><pre><span class="Keyword">proc</span> <a href="#writeConstantChunk%2Cptr.XueChunk%2CXueValue%2Ccint"><span class="Identifier">writeConstantChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">constant</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 add constant data to chunk's data section and write PUSH instruction
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="disassembleInstruction,ptr.XueChunk,cint"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#disassembleInstruction%2Cptr.XueChunk%2Ccint"><span class="Identifier">disassembleInstruction</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">offset</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-disassemble instruction at given offset from a chunk
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L104"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L104" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="disassembleChunk,ptr.XueChunk,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#disassembleChunk%2Cptr.XueChunk%2Cstring"><span class="Identifier">disassembleChunk</span></a><span class="Other">(</span><span class="Identifier">chunk</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="opcode.html#XueChunk"><span class="Identifier">XueChunk</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-disassemble code, data, debug message from a chunk
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/opcode.nim#L114"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/opcode.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
+</div>
 
 </dl></div>
 
@@ -292,7 +314,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 02:55:17 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 14:41:34 UTC</small>
       </div>
     </div>
   </div>

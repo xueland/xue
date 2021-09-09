@@ -30,7 +30,9 @@ proc printHelp() =
 proc runCodeString*(code: string, sourcePath: string) =
     ## compile given code to instructions and then interpret using VM.
     var chunk: XueChunk
-    writeConstantChunk(addr(chunk), XueValue(kind: VALUE_CHARACTER, character: "က".runeAt(0)), 123)
+    let list: XueList = XueList(kind: COMPOSITE_LIST,
+        items: @[XueValue(kind: VALUE_CHARACTER, character: Rune('a')),XueValue(kind: VALUE_CHARACTER, character: Rune('b')),XueValue(kind: VALUE_CHARACTER, character: Rune('c'))])
+    writeConstantChunk(addr(chunk), XueValue(kind: VALUE_COMPOSITE, composite: list), 123)
     writeChunk(addr(chunk), OP_RETURN, 123)
     disassembleChunk(addr(chunk), "test chunk")
     discard interpretChunk(addr(chunk))

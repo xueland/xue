@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>machine/valueop</title>
+<title>src/machine/valueop</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,24 +44,32 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">machine/valueop</h1>
+    <h1 class="title">src/machine/valueop</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -100,88 +107,88 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">mod
-      <li><a class="reference" href="#mod%2CXueValue%2CXueValue"
-    title="`mod`(a`gensym8: XueValue; b`gensym8: XueValue): XueValue">mod,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">/
-      <li><a class="reference" href="#%2F%2CXueValue%2CXueValue"
-    title="`/`(a`gensym6: XueValue; b`gensym6: XueValue): XueValue">/,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">bitand
-      <li><a class="reference" href="#bitand%2CXueValue%2CXueValue"
-    title="bitand(a`gensym13: XueValue; b`gensym13: XueValue): XueValue">bitand,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">bitor
-      <li><a class="reference" href="#bitor%2CXueValue%2CXueValue"
-    title="bitor(a`gensym15: XueValue; b`gensym15: XueValue): XueValue">bitor,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section"><
-      <li><a class="reference" href="#%3C%2CXueValue%2CXueValue"
-    title="`&lt;`(a: XueValue; b: XueValue): XueValue"><,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">^
-      <li><a class="reference" href="#%5E%2CXueValue%2CXueValue"
-    title="`^`(a`gensym10: XueValue; b`gensym10: XueValue): XueValue">^,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">bitshl
-      <li><a class="reference" href="#bitshl%2CXueValue%2CXueValue"
-    title="bitshl(a`gensym19: XueValue; b`gensym19: XueValue): XueValue">bitshl,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">*
+      <ul class="simple nested-toc-section">*
       <li><a class="reference" href="#%2A%2CXueValue%2CXueValue"
-    title="`*`(a`gensym4: XueValue; b`gensym4: XueValue): XueValue">*,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">>
-      <li><a class="reference" href="#%3E%2CXueValue%2CXueValue"
-    title="`&gt;`(a: XueValue; b: XueValue): XueValue">>,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">-
-      <li><a class="reference" href="#-%2CXueValue%2CXueValue"
-    title="`-`(a`gensym2: XueValue; b`gensym2: XueValue): XueValue">-,<wbr>XueValue,<wbr>XueValue</a></li>
-  <li><a class="reference" href="#-%2CXueValue"
-    title="`-`(value: XueValue): XueValue">-,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">bitnot
-      <li><a class="reference" href="#bitnot%2CXueValue"
-    title="bitnot(value: XueValue): XueValue">bitnot,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">bitxor
-      <li><a class="reference" href="#bitxor%2CXueValue%2CXueValue"
-    title="bitxor(a`gensym17: XueValue; b`gensym17: XueValue): XueValue">bitxor,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">bitshr
-      <li><a class="reference" href="#bitshr%2CXueValue%2CXueValue"
-    title="bitshr(a`gensym21: XueValue; b`gensym21: XueValue): XueValue">bitshr,<wbr>XueValue,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">not
-      <li><a class="reference" href="#not%2CXueComposite"
-    title="`not`(value: XueComposite): XueValue">not,<wbr>XueComposite</a></li>
-  <li><a class="reference" href="#not%2CXueValue"
-    title="`not`(value: XueValue): XueValue">not,<wbr>XueValue</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">==
-      <li><a class="reference" href="#%3D%3D%2CXueValue%2CXueValue"
-    title="`==`(a: XueValue; b: XueValue): XueValue">==,<wbr>XueValue,<wbr>XueValue</a></li>
+    title="`*`(a`gensym4: XueValue; b`gensym4: XueValue): XueValue">`*`(a`gensym4: XueValue; b`gensym4: XueValue): XueValue</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">+
       <li><a class="reference" href="#%2B%2CXueValue%2CXueValue"
-    title="`+`(a`gensym0: XueValue; b`gensym0: XueValue): XueValue">+,<wbr>XueValue,<wbr>XueValue</a></li>
+    title="`+`(a`gensym0: XueValue; b`gensym0: XueValue): XueValue">`+`(a`gensym0: XueValue; b`gensym0: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">-
+      <li><a class="reference" href="#-%2CXueValue%2CXueValue"
+    title="`-`(a`gensym2: XueValue; b`gensym2: XueValue): XueValue">`-`(a`gensym2: XueValue; b`gensym2: XueValue): XueValue</a></li>
+  <li><a class="reference" href="#-%2CXueValue"
+    title="`-`(value: XueValue): XueValue">`-`(value: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">/
+      <li><a class="reference" href="#%2F%2CXueValue%2CXueValue"
+    title="`/`(a`gensym6: XueValue; b`gensym6: XueValue): XueValue">`/`(a`gensym6: XueValue; b`gensym6: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section"><
+      <li><a class="reference" href="#%3C%2CXueValue%2CXueValue"
+    title="`&lt;`(a: XueValue; b: XueValue): XueValue">`&lt;`(a: XueValue; b: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">==
+      <li><a class="reference" href="#%3D%3D%2CXueValue%2CXueValue"
+    title="`==`(a: XueValue; b: XueValue): XueValue">`==`(a: XueValue; b: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">>
+      <li><a class="reference" href="#%3E%2CXueValue%2CXueValue"
+    title="`&gt;`(a: XueValue; b: XueValue): XueValue">`&gt;`(a: XueValue; b: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">^
+      <li><a class="reference" href="#%5E%2CXueValue%2CXueValue"
+    title="`^`(a`gensym10: XueValue; b`gensym10: XueValue): XueValue">`^`(a`gensym10: XueValue; b`gensym10: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">bitand
+      <li><a class="reference" href="#bitand%2CXueValue%2CXueValue"
+    title="bitand(a`gensym13: XueValue; b`gensym13: XueValue): XueValue">bitand(a`gensym13: XueValue; b`gensym13: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">bitnot
+      <li><a class="reference" href="#bitnot%2CXueValue"
+    title="bitnot(value: XueValue): XueValue">bitnot(value: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">bitor
+      <li><a class="reference" href="#bitor%2CXueValue%2CXueValue"
+    title="bitor(a`gensym15: XueValue; b`gensym15: XueValue): XueValue">bitor(a`gensym15: XueValue; b`gensym15: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">bitshl
+      <li><a class="reference" href="#bitshl%2CXueValue%2CXueValue"
+    title="bitshl(a`gensym19: XueValue; b`gensym19: XueValue): XueValue">bitshl(a`gensym19: XueValue; b`gensym19: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">bitshr
+      <li><a class="reference" href="#bitshr%2CXueValue%2CXueValue"
+    title="bitshr(a`gensym21: XueValue; b`gensym21: XueValue): XueValue">bitshr(a`gensym21: XueValue; b`gensym21: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">bitxor
+      <li><a class="reference" href="#bitxor%2CXueValue%2CXueValue"
+    title="bitxor(a`gensym17: XueValue; b`gensym17: XueValue): XueValue">bitxor(a`gensym17: XueValue; b`gensym17: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">mod
+      <li><a class="reference" href="#mod%2CXueValue%2CXueValue"
+    title="`mod`(a`gensym8: XueValue; b`gensym8: XueValue): XueValue">`mod`(a`gensym8: XueValue; b`gensym8: XueValue): XueValue</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">not
+      <li><a class="reference" href="#not%2CXueComposite"
+    title="`not`(value: XueComposite): XueValue">`not`(value: XueComposite): XueValue</a></li>
+  <li><a class="reference" href="#not%2CXueValue"
+    title="`not`(value: XueValue): XueValue">`not`(value: XueValue): XueValue</a></li>
 
   </ul>
 
@@ -190,8 +197,11 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#18" id="68">Templates</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">numberOperation
       <li><a class="reference" href="#numberOperation.t%2C%2C%2C%2C"
-    title="numberOperation(op, integerOp, doubleOp, errorMessage): untyped">numberOperation</a></li>
+    title="numberOperation(op, integerOp, doubleOp, errorMessage): untyped">numberOperation(op, integerOp, doubleOp, errorMessage): untyped</a></li>
+
+  </ul>
 
   </ul>
 </li>
@@ -199,6 +209,11 @@ function main() {
 </ul>
 
   </div>
+  &nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L1"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
+
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -211,221 +226,239 @@ function main() {
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<a id="+,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%2B%2CXueValue%2CXueValue"><span class="Identifier">`+`</span></a><span class="Other">(</span><span class="Identifier">a`gensym0</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym0</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L30"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="-,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#-%2CXueValue%2CXueValue"><span class="Identifier">`-`</span></a><span class="Other">(</span><span class="Identifier">a`gensym2</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym2</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L31"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="*,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%2A%2CXueValue%2CXueValue"><span class="Identifier">`*`</span></a><span class="Other">(</span><span class="Identifier">a`gensym4</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym4</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<div id="*,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%2A%2CXueValue%2CXueValue"><span class="Identifier">`*`</span></a><span class="Other">(</span><span class="Identifier">a`gensym4</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym4</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L32"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="/,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%2F%2CXueValue%2CXueValue"><span class="Identifier">`/`</span></a><span class="Other">(</span><span class="Identifier">a`gensym6</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym6</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+</div>
+<div id="+,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%2B%2CXueValue%2CXueValue"><span class="Identifier">`+`</span></a><span class="Other">(</span><span class="Identifier">a`gensym0</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym0</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L33"
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="mod,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#mod%2CXueValue%2CXueValue"><span class="Identifier">`mod`</span></a><span class="Other">(</span><span class="Identifier">a`gensym8</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym8</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+</div>
+<div id="-,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#-%2CXueValue%2CXueValue"><span class="Identifier">`-`</span></a><span class="Other">(</span><span class="Identifier">a`gensym2</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym2</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L34"
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="^,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%5E%2CXueValue%2CXueValue"><span class="Identifier">`^`</span></a><span class="Other">(</span><span class="Identifier">a`gensym10</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym10</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L35"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="-,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#-%2CXueValue"><span class="Identifier">`-`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+</div>
+<div id="-,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#-%2CXueValue"><span class="Identifier">`-`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 number negation proc - negate a value to negative one
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L37"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="bitand,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bitand%2CXueValue%2CXueValue"><span class="Identifier">bitand</span></a><span class="Other">(</span><span class="Identifier">a`gensym13</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym13</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+</div>
+<div id="/,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%2F%2CXueValue%2CXueValue"><span class="Identifier">`/`</span></a><span class="Other">(</span><span class="Identifier">a`gensym6</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym6</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L49"
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L33"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="bitor,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bitor%2CXueValue%2CXueValue"><span class="Identifier">bitor</span></a><span class="Other">(</span><span class="Identifier">a`gensym15</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym15</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L50"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L50" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="bitxor,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bitxor%2CXueValue%2CXueValue"><span class="Identifier">bitxor</span></a><span class="Other">(</span><span class="Identifier">a`gensym17</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym17</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L51"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="bitshl,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bitshl%2CXueValue%2CXueValue"><span class="Identifier">bitshl</span></a><span class="Other">(</span><span class="Identifier">a`gensym19</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym19</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L52"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="bitshr,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bitshr%2CXueValue%2CXueValue"><span class="Identifier">bitshr</span></a><span class="Other">(</span><span class="Identifier">a`gensym21</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym21</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L53"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="<,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%3C%2CXueValue%2CXueValue"><span class="Identifier">`&lt;`</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+</div>
+<div id="<,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%3C%2CXueValue%2CXueValue"><span class="Identifier">`&lt;`</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 compare if a is lesser than b.
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L55"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id=">,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%3E%2CXueValue%2CXueValue"><span class="Identifier">`&gt;`</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-compare if a is greater than b.
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L69"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="bitnot,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bitnot%2CXueValue"><span class="Identifier">bitnot</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-calculate bitwise-not of a value
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L83"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L83" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="not,XueComposite"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#not%2CXueComposite"><span class="Identifier">`not`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueComposite"><span class="Identifier">XueComposite</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-calculate logic-not of a composite value
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L95"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L95" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="not,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#not%2CXueValue"><span class="Identifier">`not`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-calculate logic-not of a primitive value
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L101"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L101" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="==,XueValue,XueValue"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%3D%3D%2CXueValue%2CXueValue"><span class="Identifier">`==`</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+</div>
+<div id="==,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%3D%3D%2CXueValue%2CXueValue"><span class="Identifier">`==`</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 check if value a and b are equal
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L117"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L117" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L117" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+</div>
+<div id=">,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%3E%2CXueValue%2CXueValue"><span class="Identifier">`&gt;`</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+compare if a is greater than b.
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L69"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="^,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%5E%2CXueValue%2CXueValue"><span class="Identifier">`^`</span></a><span class="Other">(</span><span class="Identifier">a`gensym10</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym10</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L35"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="mod,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#mod%2CXueValue%2CXueValue"><span class="Identifier">`mod`</span></a><span class="Other">(</span><span class="Identifier">a`gensym8</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym8</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L34"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="not,XueComposite">
+<dt><pre><span class="Keyword">proc</span> <a href="#not%2CXueComposite"><span class="Identifier">`not`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueComposite"><span class="Identifier">XueComposite</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+calculate logic-not of a composite value
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L95"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L95" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="not,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#not%2CXueValue"><span class="Identifier">`not`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+calculate logic-not of a primitive value
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L101"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L101" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="bitand,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#bitand%2CXueValue%2CXueValue"><span class="Identifier">bitand</span></a><span class="Other">(</span><span class="Identifier">a`gensym13</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym13</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L49"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="bitnot,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#bitnot%2CXueValue"><span class="Identifier">bitnot</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+calculate bitwise-not of a value
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L83"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L83" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="bitor,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#bitor%2CXueValue%2CXueValue"><span class="Identifier">bitor</span></a><span class="Other">(</span><span class="Identifier">a`gensym15</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym15</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L50"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L50" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="bitshl,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#bitshl%2CXueValue%2CXueValue"><span class="Identifier">bitshl</span></a><span class="Other">(</span><span class="Identifier">a`gensym19</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym19</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="bitshr,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#bitshr%2CXueValue%2CXueValue"><span class="Identifier">bitshr</span></a><span class="Other">(</span><span class="Identifier">a`gensym21</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym21</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L53"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="bitxor,XueValue,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#bitxor%2CXueValue%2CXueValue"><span class="Identifier">bitxor</span></a><span class="Other">(</span><span class="Identifier">a`gensym17</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">;</span> <span class="Identifier">b`gensym17</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L51"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
 
 </dl></div>
 <div class="section" id="18">
 <h1><a class="toc-backref" href="#18">Templates</a></h1>
 <dl class="item">
-<a id="numberOperation.t,,,,"></a>
+<div id="numberOperation.t,,,,">
 <dt><pre><span class="Keyword">template</span> <a href="#numberOperation.t%2C%2C%2C%2C"><span class="Identifier">numberOperation</span></a><span class="Other">(</span><span class="Identifier">op</span><span class="Other">,</span> <span class="Identifier">integerOp</span><span class="Other">,</span> <span class="Identifier">doubleOp</span><span class="Other">,</span> <span class="Identifier">errorMessage</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
@@ -433,9 +466,10 @@ arithmetic op proc generator
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/valueop.nim#L4"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/valueop.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+</div>
 
 </dl></div>
 
@@ -446,7 +480,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 02:55:17 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 14:41:34 UTC</small>
       </div>
     </div>
   </div>

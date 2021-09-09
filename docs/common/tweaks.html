@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>common/tweaks</title>
+<title>src/common/tweaks</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,24 +44,32 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">common/tweaks</h1>
+    <h1 class="title">src/common/tweaks</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -94,26 +101,26 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#NO_NEWLINE_PADDING"
+      <li><a class="reference" href="#DEBUG_TRACE_EXECUTION"
+    title="DEBUG_TRACE_EXECUTION = true">DEBUG_TRACE_EXECUTION</a></li>
+  <li><a class="reference" href="#EXIT_STATUS_FAILURE"
+    title="EXIT_STATUS_FAILURE = 1">EXIT_STATUS_FAILURE</a></li>
+  <li><a class="reference" href="#EXIT_STATUS_SUCCESS"
+    title="EXIT_STATUS_SUCCESS = 0">EXIT_STATUS_SUCCESS</a></li>
+  <li><a class="reference" href="#EXIT_STATUS_WRONG_USAGE"
+    title="EXIT_STATUS_WRONG_USAGE = 2">EXIT_STATUS_WRONG_USAGE</a></li>
+  <li><a class="reference" href="#NO_NEWLINE_PADDING"
     title="NO_NEWLINE_PADDING = false">NO_NEWLINE_PADDING</a></li>
+  <li><a class="reference" href="#XUE_VERSION_BUILD"
+    title="XUE_VERSION_BUILD = &quot;20210909144134&quot;">XUE_VERSION_BUILD</a></li>
   <li><a class="reference" href="#XUE_VERSION_MAJOR"
     title="XUE_VERSION_MAJOR = 1">XUE_VERSION_MAJOR</a></li>
   <li><a class="reference" href="#XUE_VERSION_MINOR"
     title="XUE_VERSION_MINOR = 0">XUE_VERSION_MINOR</a></li>
   <li><a class="reference" href="#XUE_VERSION_PATCH"
     title="XUE_VERSION_PATCH = 0">XUE_VERSION_PATCH</a></li>
-  <li><a class="reference" href="#XUE_VERSION_BUILD"
-    title="XUE_VERSION_BUILD = &quot;20210909025516&quot;">XUE_VERSION_BUILD</a></li>
   <li><a class="reference" href="#XUE_VERSION_STRING"
     title="XUE_VERSION_STRING = &quot;1.0.0&quot;">XUE_VERSION_STRING</a></li>
-  <li><a class="reference" href="#EXIT_STATUS_SUCCESS"
-    title="EXIT_STATUS_SUCCESS = 0">EXIT_STATUS_SUCCESS</a></li>
-  <li><a class="reference" href="#EXIT_STATUS_FAILURE"
-    title="EXIT_STATUS_FAILURE = 1">EXIT_STATUS_FAILURE</a></li>
-  <li><a class="reference" href="#EXIT_STATUS_WRONG_USAGE"
-    title="EXIT_STATUS_WRONG_USAGE = 2">EXIT_STATUS_WRONG_USAGE</a></li>
-  <li><a class="reference" href="#DEBUG_TRACE_EXECUTION"
-    title="DEBUG_TRACE_EXECUTION = true">DEBUG_TRACE_EXECUTION</a></li>
 
   </ul>
 </li>
@@ -121,6 +128,11 @@ function main() {
 </ul>
 
   </div>
+  &nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L1"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
+
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -128,106 +140,7 @@ function main() {
   <div class="section" id="10">
 <h1><a class="toc-backref" href="#10">Consts</a></h1>
 <dl class="item">
-<a id="NO_NEWLINE_PADDING"></a>
-<dt><pre><a href="tweaks.html#NO_NEWLINE_PADDING"><span class="Identifier">NO_NEWLINE_PADDING</span></a> <span class="Other">=</span> <span class="DecNumber">false</span></pre></dt>
-<dd>
-
-whether new-line padding should be inserted when <tt class="docutils literal"><span class="pre">printPaddedLine</span></tt> is called
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L4"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="XUE_VERSION_MAJOR"></a>
-<dt><pre><a href="tweaks.html#XUE_VERSION_MAJOR"><span class="Identifier">XUE_VERSION_MAJOR</span></a> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
-<dd>
-
-xue major version number
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L6"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L6" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="XUE_VERSION_MINOR"></a>
-<dt><pre><a href="tweaks.html#XUE_VERSION_MINOR"><span class="Identifier">XUE_VERSION_MINOR</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
-<dd>
-
-xue minor version number
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L7"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="XUE_VERSION_PATCH"></a>
-<dt><pre><a href="tweaks.html#XUE_VERSION_PATCH"><span class="Identifier">XUE_VERSION_PATCH</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
-<dd>
-
-xue patch version number
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L8"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="XUE_VERSION_BUILD"></a>
-<dt><pre><a href="tweaks.html#XUE_VERSION_BUILD"><span class="Identifier">XUE_VERSION_BUILD</span></a> <span class="Other">=</span> <span class="StringLit">&quot;20210909025516&quot;</span></pre></dt>
-<dd>
-
-build number is generated basded on <tt class="docutils literal"><span class="pre">CompileDate</span></tt> and <tt class="docutils literal"><span class="pre">CompileTime</span></tt>
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L9"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="XUE_VERSION_STRING"></a>
-<dt><pre><a href="tweaks.html#XUE_VERSION_STRING"><span class="Identifier">XUE_VERSION_STRING</span></a> <span class="Other">=</span> <span class="StringLit">&quot;1.0.0&quot;</span></pre></dt>
-<dd>
-
-build number is generated basded major, minor, patch version.
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L11"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="EXIT_STATUS_SUCCESS"></a>
-<dt><pre><a href="tweaks.html#EXIT_STATUS_SUCCESS"><span class="Identifier">EXIT_STATUS_SUCCESS</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
-<dd>
-
-operation is succeeded
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L14"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="EXIT_STATUS_FAILURE"></a>
-<dt><pre><a href="tweaks.html#EXIT_STATUS_FAILURE"><span class="Identifier">EXIT_STATUS_FAILURE</span></a> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
-<dd>
-
-operation is failed with some error
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L15"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="EXIT_STATUS_WRONG_USAGE"></a>
-<dt><pre><a href="tweaks.html#EXIT_STATUS_WRONG_USAGE"><span class="Identifier">EXIT_STATUS_WRONG_USAGE</span></a> <span class="Other">=</span> <span class="DecNumber">2</span></pre></dt>
-<dd>
-
-operation is failed due to invalid CLI usage, etc.
-&nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L16"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="DEBUG_TRACE_EXECUTION"></a>
+<div id="DEBUG_TRACE_EXECUTION">
 <dt><pre><a href="tweaks.html#DEBUG_TRACE_EXECUTION"><span class="Identifier">DEBUG_TRACE_EXECUTION</span></a> <span class="Other">=</span> <span class="DecNumber">true</span></pre></dt>
 <dd>
 
@@ -235,9 +148,118 @@ class="link-seesrc" target="_blank">Source</a>
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+</div>
+<div id="EXIT_STATUS_FAILURE">
+<dt><pre><a href="tweaks.html#EXIT_STATUS_FAILURE"><span class="Identifier">EXIT_STATUS_FAILURE</span></a> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
+<dd>
+
+operation is failed with some error
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L15"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="EXIT_STATUS_SUCCESS">
+<dt><pre><a href="tweaks.html#EXIT_STATUS_SUCCESS"><span class="Identifier">EXIT_STATUS_SUCCESS</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+operation is succeeded
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L14"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="EXIT_STATUS_WRONG_USAGE">
+<dt><pre><a href="tweaks.html#EXIT_STATUS_WRONG_USAGE"><span class="Identifier">EXIT_STATUS_WRONG_USAGE</span></a> <span class="Other">=</span> <span class="DecNumber">2</span></pre></dt>
+<dd>
+
+operation is failed due to invalid CLI usage, etc.
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="NO_NEWLINE_PADDING">
+<dt><pre><a href="tweaks.html#NO_NEWLINE_PADDING"><span class="Identifier">NO_NEWLINE_PADDING</span></a> <span class="Other">=</span> <span class="DecNumber">false</span></pre></dt>
+<dd>
+
+whether new-line padding should be inserted when <tt class="docutils literal"><span class="pre"><span class="Identifier">printPaddedLine</span></span></tt> is called
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L4"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="XUE_VERSION_BUILD">
+<dt><pre><a href="tweaks.html#XUE_VERSION_BUILD"><span class="Identifier">XUE_VERSION_BUILD</span></a> <span class="Other">=</span> <span class="StringLit">&quot;20210909144134&quot;</span></pre></dt>
+<dd>
+
+build number is generated basded on <tt class="docutils literal"><span class="pre"><span class="Identifier">CompileDate</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Identifier">CompileTime</span></span></tt>
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L9"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="XUE_VERSION_MAJOR">
+<dt><pre><a href="tweaks.html#XUE_VERSION_MAJOR"><span class="Identifier">XUE_VERSION_MAJOR</span></a> <span class="Other">=</span> <span class="DecNumber">1</span></pre></dt>
+<dd>
+
+xue major version number
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L6"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L6" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="XUE_VERSION_MINOR">
+<dt><pre><a href="tweaks.html#XUE_VERSION_MINOR"><span class="Identifier">XUE_VERSION_MINOR</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+xue minor version number
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L7"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="XUE_VERSION_PATCH">
+<dt><pre><a href="tweaks.html#XUE_VERSION_PATCH"><span class="Identifier">XUE_VERSION_PATCH</span></a> <span class="Other">=</span> <span class="DecNumber">0</span></pre></dt>
+<dd>
+
+xue patch version number
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L8"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L8" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="XUE_VERSION_STRING">
+<dt><pre><a href="tweaks.html#XUE_VERSION_STRING"><span class="Identifier">XUE_VERSION_STRING</span></a> <span class="Other">=</span> <span class="StringLit">&quot;1.0.0&quot;</span></pre></dt>
+<dd>
+
+build number is generated basded major, minor, patch version.
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/common/tweaks.nim#L11"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/common/tweaks.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
 
 </dl></div>
 
@@ -248,7 +270,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 02:55:16 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 14:41:34 UTC</small>
       </div>
     </div>
   </div>

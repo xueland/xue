@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>machine/value</title>
+<title>src/machine/value</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,24 +44,32 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">machine/value</h1>
+    <h1 class="title">src/machine/value</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -94,10 +101,15 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#XueValueKind"
-    title="XueValueKind = enum
-  VALUE_NOTVAL, VALUE_NULL, VALUE_BOOLEAN, VALUE_INTEGER, VALUE_CHARACTER,
-  VALUE_DOUBLE, VALUE_COMPOSITE">XueValueKind</a></li>
+      <li><a class="reference" href="#XueComposite"
+    title="XueComposite = ref object of RootObj
+  kind*: XueCompositeKind">XueComposite</a></li>
+  <li><a class="reference" href="#XueCompositeKind"
+    title="XueCompositeKind = enum
+  COMPOSITE_LIST">XueCompositeKind</a></li>
+  <li><a class="reference" href="#XueList"
+    title="XueList = ref object of XueComposite
+  items*: seq[XueValue]">XueList</a></li>
   <li><a class="reference" href="#XueValue"
     title="XueValue = object
   case kind*: XueValueKind
@@ -118,15 +130,23 @@ function main() {
 
   of VALUE_COMPOSITE:
       composite*: XueComposite">XueValue</a></li>
-  <li><a class="reference" href="#XueCompositeKind"
-    title="XueCompositeKind = enum
-  COMPOSITE_LIST">XueCompositeKind</a></li>
-  <li><a class="reference" href="#XueComposite"
-    title="XueComposite = ref object of RootObj
-  kind*: XueCompositeKind">XueComposite</a></li>
-  <li><a class="reference" href="#XueList"
-    title="XueList = ref object of XueComposite
-  items*: seq[XueValue]">XueList</a></li>
+  <li><a class="reference" href="#XueValueKind"
+    title="XueValueKind = enum
+  VALUE_NOTVAL, VALUE_NULL, VALUE_BOOLEAN, VALUE_INTEGER, VALUE_CHARACTER,
+  VALUE_DOUBLE, VALUE_COMPOSITE">XueValueKind</a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
+  <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">$
+      <li><a class="reference" href="#%24%2CXueComposite"
+    title="`$`(value: XueComposite): string">`$`(value: XueComposite): string</a></li>
+  <li><a class="reference" href="#%24%2CXueValue"
+    title="`$`(value: XueValue): string">`$`(value: XueValue): string</a></li>
+
+  </ul>
 
   </ul>
 </li>
@@ -134,6 +154,11 @@ function main() {
 </ul>
 
   </div>
+  &nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L1"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
+
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -141,20 +166,48 @@ function main() {
   <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<a id="XueValueKind"></a>
-<dt><pre><a href="value.html#XueValueKind"><span class="Identifier">XueValueKind</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">VALUE_NOTVAL</span><span class="Other">,</span> <span class="Identifier">VALUE_NULL</span><span class="Other">,</span> <span class="Identifier">VALUE_BOOLEAN</span><span class="Other">,</span> <span class="Identifier">VALUE_INTEGER</span><span class="Other">,</span> <span class="Identifier">VALUE_CHARACTER</span><span class="Other">,</span>
-  <span class="Identifier">VALUE_DOUBLE</span><span class="Other">,</span> <span class="Identifier">VALUE_COMPOSITE</span></pre></dt>
+<div id="XueComposite">
+<dt><pre><a href="value.html#XueComposite"><span class="Identifier">XueComposite</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
+  <span class="Identifier">kind</span><span class="Operator">*</span><span class="Other">:</span> <a href="value.html#XueCompositeKind"><span class="Identifier">XueCompositeKind</span></a>
+</pre></dt>
 <dd>
 
-list of value kinds: notval, null, bool, int, char, double and others.
+just a composite base struct with &quot;kind&quot; member.
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L4"
+href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="XueValue"></a>
+</div>
+<div id="XueCompositeKind">
+<dt><pre><a href="value.html#XueCompositeKind"><span class="Identifier">XueCompositeKind</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">COMPOSITE_LIST</span></pre></dt>
+<dd>
+
+kinds of composite value: list, etc.
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L30"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="XueList">
+<dt><pre><a href="value.html#XueList"><span class="Identifier">XueList</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="value.html#XueComposite"><span class="Identifier">XueComposite</span></a>
+  <span class="Identifier">items</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">]</span>
+</pre></dt>
+<dd>
+
+list value - contains lists of XueValue
+&nbsp;&nbsp;<a
+href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L38"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="XueValue">
 <dt><pre><a href="value.html#XueValue"><span class="Identifier">XueValue</span></a> <span class="Other">=</span> <span class="Keyword">object</span>
   <span class="Keyword">case</span> <span class="Identifier">kind</span><span class="Operator">*</span><span class="Other">:</span> <a href="value.html#XueValueKind"><span class="Identifier">XueValueKind</span></a>
   <span class="Keyword">of</span> <span class="Identifier">VALUE_NOTVAL</span><span class="Other">,</span> <span class="Identifier">VALUE_NULL</span><span class="Other">:</span>
@@ -182,47 +235,55 @@ xue value struct using kind and value union
 &nbsp;&nbsp;<a
 href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="XueCompositeKind"></a>
-<dt><pre><a href="value.html#XueCompositeKind"><span class="Identifier">XueCompositeKind</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">COMPOSITE_LIST</span></pre></dt>
+</div>
+<div id="XueValueKind">
+<dt><pre><a href="value.html#XueValueKind"><span class="Identifier">XueValueKind</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">VALUE_NOTVAL</span><span class="Other">,</span> <span class="Identifier">VALUE_NULL</span><span class="Other">,</span> <span class="Identifier">VALUE_BOOLEAN</span><span class="Other">,</span> <span class="Identifier">VALUE_INTEGER</span><span class="Other">,</span> <span class="Identifier">VALUE_CHARACTER</span><span class="Other">,</span>
+  <span class="Identifier">VALUE_DOUBLE</span><span class="Other">,</span> <span class="Identifier">VALUE_COMPOSITE</span></pre></dt>
 <dd>
 
-kinds of composite value: list, etc.
+list of value kinds: notval, null, bool, int, char, double and others.
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L30"
+href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L4"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="XueComposite"></a>
-<dt><pre><a href="value.html#XueComposite"><span class="Identifier">XueComposite</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
-  <span class="Identifier">kind</span><span class="Operator">*</span><span class="Other">:</span> <a href="value.html#XueCompositeKind"><span class="Identifier">XueCompositeKind</span></a>
-</pre></dt>
+</div>
+
+</dl></div>
+<div class="section" id="12">
+<h1><a class="toc-backref" href="#12">Procs</a></h1>
+<dl class="item">
+<div id="$,XueComposite">
+<dt><pre><span class="Keyword">proc</span> <a href="#%24%2CXueComposite"><span class="Identifier">`$`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueComposite"><span class="Identifier">XueComposite</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span>
+                                        <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-just a composite base struct with &quot;kind&quot; member.
+convert XueComposite value to string
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L34"
+href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L45"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="XueList"></a>
-<dt><pre><a href="value.html#XueList"><span class="Identifier">XueList</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="value.html#XueComposite"><span class="Identifier">XueComposite</span></a>
-  <span class="Identifier">items</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">]</span>
-</pre></dt>
+</div>
+<div id="$,XueValue">
+<dt><pre><span class="Keyword">proc</span> <a href="#%24%2CXueValue"><span class="Identifier">`$`</span></a><span class="Other">(</span><span class="Identifier">value</span><span class="Other">:</span> <a href="value.html#XueValue"><span class="Identifier">XueValue</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+                                    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-list value - contains lists of XueValue
+just forward declaration of <tt class="docutils literal"><span class="pre"><span class="Operator">$</span></span></tt>(value: XueValue): stringconvert XueValue to string
 &nbsp;&nbsp;<a
-href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L38"
+href="https://github.com/xueland/xue/tree/main/src/machine/value.nim#L52"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/xueland/xue/edit/devel/src/machine/value.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
+</div>
 
 </dl></div>
 
@@ -233,7 +294,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 02:55:16 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 14:41:34 UTC</small>
       </div>
     </div>
   </div>

@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,26 +44,40 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
     Modules: <a href="common/ioutils.html">common/ioutils</a>, <a href="common/libc.html">common/libc</a>, <a href="common/tweaks.html">common/tweaks</a>, <a href="machine/machine.html">machine/machine</a>, <a href="machine/opcode.html">machine/opcode</a>, <a href="machine/value.html">machine/value</a>, <a href="machine/valueop.html">machine/valueop</a>, <a href="xue.html">xue</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="%60%26gt%3B%60" href="#%60%26gt%3B%60"><span>`&gt;`:</span></a></dt><dd><ul class="simple">
+<dl><dt><a name="%60%24%60" href="#%60%24%60"><span>`$`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="value: `$`(value: XueComposite): string" href="machine/value.html#%24%2CXueComposite">value: `$`(value: XueComposite): string</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="value: `$`(value: XueValue): string" href="machine/value.html#%24%2CXueValue">value: `$`(value: XueValue): string</a></li>
+          </ul></dd>
+<dt><a name="%60%26gt%3B%60" href="#%60%26gt%3B%60"><span>`&gt;`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="valueop: `&gt;`(a: XueValue; b: XueValue): XueValue" href="machine/valueop.html#%3E%2CXueValue%2CXueValue">valueop: `&gt;`(a: XueValue; b: XueValue): XueValue</a></li>
           </ul></dd>
@@ -286,7 +299,7 @@ function main() {
           </ul></dd>
 <dt><a name="print" href="#print"><span>print:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="ioutils: print(format: cstring; args: varargs[untyped]): untyped" href="common/ioutils.html#print.m%2Ccstring%2Cvarargs%5Buntyped%5D">ioutils: print(format: cstring; args: varargs[untyped]): untyped</a></li>
+          data-doc-search-tag="ioutils: print(format: string; args: varargs[untyped]): untyped" href="common/ioutils.html#print.m%2Cstring%2Cvarargs%5Buntyped%5D">ioutils: print(format: string; args: varargs[untyped]): untyped</a></li>
           </ul></dd>
 <dt><a name="printf" href="#printf"><span>printf:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -294,11 +307,11 @@ function main() {
           </ul></dd>
 <dt><a name="printLine" href="#printLine"><span>printLine:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="ioutils: printLine(format: cstring; args: varargs[untyped]): untyped" href="common/ioutils.html#printLine.m%2Ccstring%2Cvarargs%5Buntyped%5D">ioutils: printLine(format: cstring; args: varargs[untyped]): untyped</a></li>
+          data-doc-search-tag="ioutils: printLine(format: string; args: varargs[untyped]): untyped" href="common/ioutils.html#printLine.m%2Cstring%2Cvarargs%5Buntyped%5D">ioutils: printLine(format: string; args: varargs[untyped]): untyped</a></li>
           </ul></dd>
 <dt><a name="printPaddedLine" href="#printPaddedLine"><span>printPaddedLine:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="ioutils: printPaddedLine(format: cstring; args: varargs[untyped]): untyped" href="common/ioutils.html#printPaddedLine.m%2Ccstring%2Cvarargs%5Buntyped%5D">ioutils: printPaddedLine(format: cstring; args: varargs[untyped]): untyped</a></li>
+          data-doc-search-tag="ioutils: printPaddedLine(format: string; args: varargs[untyped]): untyped" href="common/ioutils.html#printPaddedLine.m%2Cstring%2Cvarargs%5Buntyped%5D">ioutils: printPaddedLine(format: string; args: varargs[untyped]): untyped</a></li>
           </ul></dd>
 <dt><a name="puts" href="#puts"><span>puts:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -417,7 +430,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 02:55:17 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-09 14:41:34 UTC</small>
       </div>
     </div>
   </div>

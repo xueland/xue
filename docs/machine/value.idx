@@ -11,3 +11,5 @@ COMPOSITE_LIST	machine/value.html#COMPOSITE_LIST	XueCompositeKind.COMPOSITE_LIST
 XueCompositeKind	machine/value.html#XueCompositeKind	value: XueCompositeKind	
 XueComposite	machine/value.html#XueComposite	value: XueComposite	
 XueList	machine/value.html#XueList	value: XueList	
+`$`	machine/value.html#$,XueComposite	value: `$`(value: XueComposite): string	
+`$`	machine/value.html#$,XueValue	value: `$`(value: XueValue): string	

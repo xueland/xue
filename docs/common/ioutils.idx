@@ -1,3 +1,3 @@
-print	common/ioutils.html#print.m,cstring,varargs[untyped]	ioutils: print(format: cstring; args: varargs[untyped]): untyped	
-printLine	common/ioutils.html#printLine.m,cstring,varargs[untyped]	ioutils: printLine(format: cstring; args: varargs[untyped]): untyped	
-printPaddedLine	common/ioutils.html#printPaddedLine.m,cstring,varargs[untyped]	ioutils: printPaddedLine(format: cstring; args: varargs[untyped]): untyped	
+print	common/ioutils.html#print.m,string,varargs[untyped]	ioutils: print(format: string; args: varargs[untyped]): untyped	
+printLine	common/ioutils.html#printLine.m,string,varargs[untyped]	ioutils: printLine(format: string; args: varargs[untyped]): untyped	
+printPaddedLine	common/ioutils.html#printPaddedLine.m,string,varargs[untyped]	ioutils: printPaddedLine(format: string; args: varargs[untyped]): untyped	
